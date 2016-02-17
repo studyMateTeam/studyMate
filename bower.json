@@ -1,0 +1,22 @@
+{
+  "name": "studymate",
+  "homepage": "https://github.com/ecdemis123/studymate",
+  "authors": [
+    "Eleanor Demis <eleanordemis@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18"
+  }
+}
