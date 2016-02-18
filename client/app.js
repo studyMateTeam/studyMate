@@ -1,6 +1,5 @@
 angular.module('studyMate', ['ui.router'])
 .config(function($stateProvider, $urlRouterProvider) {
-  console.log('inside routes');
   $stateProvider
   .state('eventsHome', {
     url: '/eventsHome',
@@ -10,16 +9,16 @@ angular.module('studyMate', ['ui.router'])
     url: '/signin',
     templateUrl: 'auth/signin.html'
   })
-  .state('signout', {
-    url: '/signout',
-    templateUrl: 'auth/signout.html'
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'auth/signup.html'
   });
   $urlRouterProvider.otherwise('/signin');
-})
-
-.run(function($state, $rootScope) {
-  console.log("app running");
-  $rootScope.$on('$stateChangeStart', function(event, toState) {
-    console.log("stateChange ", toState);
-  });
 });
+//just kept this here to test and make sure that the app is running
+// .run(function($state, $rootScope) {
+//   console.log("app running");
+//   $rootScope.$on('$stateChangeStart', function(event, toState) {
+//     console.log("stateChange ", toState);
+//   });
+// });
