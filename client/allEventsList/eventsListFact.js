@@ -1,7 +1,7 @@
 angular.module('studyMate')
 
 .factory('eventsListFact', function(){
-  var postEvent = function(event) {
+  var postEvent = function() {
     return $http({
       method: 'GET',
       url: '/api/events/postEvent',

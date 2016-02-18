@@ -1,16 +1,24 @@
 angular.module('studyMate',['ui.router'])
 .config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('signin', {
+  $stateProvider
+  .state('signin', {
     url: '/signin',
-    templateUrl: 'signin.html'
-  });
-  $stateProvider.state('signout', {
+    templateUrl: './auth/signin.html'
+  })
+  .state('signout', {
     url: '/signout',
-    templateUrl: 'signout.html'
-  });
-  $stateProvider.state('eventsHome', {
+    templateUrl: './auth/signout.html'
+  })
+  .state('eventsHome', {
     url: '/eventsHome',
-    templateUrl: 'eventsHome.html'
+    templateUrl: './allEventsList/eventsHome.html'
   });
   $urlRouterProvider.otherwise('/signin');
+})
+
+.run(function($state, $rootScope) {
+  console.log("app running");
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    console.log("stateChange ", toState);
+  });
 });
