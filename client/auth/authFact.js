@@ -1,4 +1,4 @@
-angular.module('studyMate', [])
+angular.module('studyMate')
 .factory('Auth', function ($http, $location, $window) {
 
   var signin = function (user) {
@@ -31,7 +31,6 @@ angular.module('studyMate', [])
     $window.localStorage.removeItem('com.shortly');
     $location.path('/signin');
   };
-
 
   return {
     signin: signin,

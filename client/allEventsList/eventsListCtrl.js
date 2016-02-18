@@ -7,7 +7,8 @@ angular.module('studyMate')
       $scope.data = data;
     }).catch(function(err) {
       console.log(err);
-    })
-  }
+    });
+  };
   $scope.displayEvent();
-})
+  console.log('eventsListCtrl');
+});
