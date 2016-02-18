@@ -8,7 +8,7 @@ angular.module('studyMate')
   var addEvent = function(eventDetails) {
     return $http({
       method: 'POST',
-      url: '/addEvent',
+      url: '/api/events/addEvent',
       data: {
         topic: eventDetails.topic,
         time: eventDetails.time,
@@ -20,9 +20,9 @@ angular.module('studyMate')
       return response.data;
     },function error(response) {
       console.log(response);
-    })
-  }
+    });
+  };
   return {
     addEvent: addEvent
   };
-})
+});

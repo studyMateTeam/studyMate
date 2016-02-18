@@ -10,5 +10,5 @@ angular.module('studyMate')
     eventObj.host = 'user'; //taken from sessions?
     eventObj.guests = [];
     createEventFact.addEvent(eventObj);
-  }
-})
+  };
+});

@@ -1,10 +1,6 @@
 var express = require('express');
-
+var jsonParser = require('body-parser').json();
 var app = express();
-
-// app.get('/', function(req, res) {
-//   res.send('hello world');
-// });
 
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
