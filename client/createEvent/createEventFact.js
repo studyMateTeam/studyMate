@@ -20,7 +20,7 @@ angular.module('studyMate')
       return response.data;
     },function error(response) {
       console.log(response);
-    })
+    });
   }
   return {
     addEvent: addEvent
