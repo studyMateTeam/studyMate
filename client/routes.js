@@ -1,6 +1,9 @@
-angular.module('studyMate', ['ui.router'])
-.config(function($stateProvider, $urlRouterProvider) {
-  console.log('inside routes');
+angular.module('studyMate').config(config);
+
+config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+function config($stateProvider, $urlRouterProvider) {
+
   $stateProvider
   .state('eventsHome', {
     url: '/eventsHome',
@@ -14,12 +17,6 @@ angular.module('studyMate', ['ui.router'])
     url: '/signout',
     templateUrl: 'auth/signout.html'
   });
-  $urlRouterProvider.otherwise('/signin');
-})
 
-.run(function($state, $rootScope) {
-  console.log("app running");
-  $rootScope.$on('$stateChangeStart', function(event, toState) {
-    console.log("stateChange ", toState);
-  });
-});
+  $urlRouterProvider.otherwise('/signin');
+}

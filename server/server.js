@@ -8,7 +8,6 @@ var server = app.listen(port, function () {
  console.log('http://localhost:' + port);
 });
 
-app.use(express.static(__dirname + '/../client'));
-
+app.use('/', express.static(__dirname + '/../client'));
 
 module.exports = app;
