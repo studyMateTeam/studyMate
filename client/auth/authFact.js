@@ -1,5 +1,5 @@
 angular.module('studyMate')
-.factory('Auth', function ($http, $location, $window) {
+.factory('AuthFact', function ($http, $location, $window) {
 
   var signin = function (user) {
     return $http({
@@ -23,19 +23,9 @@ angular.module('studyMate')
     });
   };
 
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('com.shortly');
-  };
-
-  var signout = function () {
-    $window.localStorage.removeItem('com.shortly');
-    $location.path('/signin');
-  };
 
   return {
     signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
+    signup: signup
   };
 });

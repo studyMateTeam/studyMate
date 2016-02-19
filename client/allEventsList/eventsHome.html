@@ -1,14 +1,14 @@
 <div class="createEvent" ng-controller="createEventCtrl">
   <form ng-submit="sendEvent()">
-    <input type="text" ng-model="topic"></input>
-    <input type="text" ng-model="place"></input>
-    <input type="text" ng-model="date"></input>
-    <input type="text" ng-model="time"></input>
+    <input type="text" ng-model="event.topic"></input>
+    <input type="text" ng-model="event.place"></input>
+    <input type="text" ng-model="event.date"></input>
+    <input type="text" ng-model="event.time"></input>
     <button>Add</button>
   </form>
 </div>
 
-<div class="allEvents" ng-controller="eventListCtrl">
+<div class="allEvents" ng-controller="eventsListCtrl">
   <div class="indivEvent" ng-repeat="event in data">
     <div class="topic">{{event.topic}}</div>
     <div class="place">{{event.place}}</div>

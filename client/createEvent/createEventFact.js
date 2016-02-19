@@ -9,13 +9,7 @@ angular.module('studyMate')
     return $http({
       method: 'POST',
       url: '/api/events/addEvent',
-      data: {
-        topic: eventDetails.topic,
-        time: eventDetails.time,
-        date: eventDetails.date,
-        place: eventDetails.place
-
-      }
+      data: eventDetails
     }).then(function success(response) {
       return response.data;
     },function error(response) {
