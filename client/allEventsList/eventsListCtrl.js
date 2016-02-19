@@ -1,8 +1,9 @@
 angular.module('studyMate')
 
-.controller('eventsListCtrl', function($scope, eventsListFact){
+.controller('eventsListCtrl',function($scope, eventsListFact){
+
   $scope.displayEvent = function(){
-    $scope.eventsListFact.getEvents()
+      eventsListFact.getEvents()
     .then(function(data){
       $scope.data = data;
     }).catch(function(err) {
@@ -10,5 +11,5 @@ angular.module('studyMate')
     });
   };
   $scope.displayEvent();
-  console.log('eventsListCtrl');
+
 });

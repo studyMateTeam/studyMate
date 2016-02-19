@@ -3,14 +3,14 @@
 // in our signup/signin forms using the injected Auth service
 angular.module('studyMate')
 
-.controller('AuthController', function ($scope, $window, $location, AuthFact) {
+.controller('AuthController', function ($scope, $window, $location, $state, AuthFact) {
   $scope.user = {};
 
   $scope.signin = function () {
     AuthFact.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
+        $state.go('eventsHome');
       })
       .catch(function (error) {
         console.error(error);
