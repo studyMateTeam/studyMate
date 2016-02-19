@@ -80,10 +80,11 @@ app.post('/api/events/addEvent', jsonParser, function(req, res) {
   var event = {topic: topic, date:date, time: time, place:place, guests:guests};
 
   eventsDB.push(event);
-  res.send(event);
+  res.send(eventsDB);
 });
 
 app.get('/api/events/getEvent', jsonParser, function(req, res) {
+  console.log(eventsDB);
   res.send(eventsDB);
 });
 

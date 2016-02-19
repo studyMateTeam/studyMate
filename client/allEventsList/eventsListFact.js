@@ -6,6 +6,7 @@ angular.module('studyMate')
       method: 'GET',
       url: '/api/events/getEvent',
     }).then( function successs(response) {
+      console.log(response)
       return response.data;
     }, function error(response) {
       console.log(response);
