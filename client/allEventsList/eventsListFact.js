@@ -4,7 +4,7 @@ angular.module('studyMate')
   var getEvents = function() {
     return $http({
       method: 'GET',
-      url: '/api/events/postEvent',
+      url: '/api/events/getEvent',
     }).then( function successs(response) {
       return response.data;
     }, function error(response) {

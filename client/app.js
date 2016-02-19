@@ -7,11 +7,11 @@ angular.module('studyMate', ['ui.router'])
   })
   .state('signin', {
     url: '/signin',
-    templateUrl: 'auth/signin.html'
+    templateUrl: 'log/signin.html'
   })
   .state('signup', {
     url: '/signup',
-    templateUrl: 'auth/signup.html'
+    templateUrl: 'log/signup.html'
   });
   $urlRouterProvider.otherwise('/signin');
 });
