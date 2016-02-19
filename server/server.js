@@ -1,9 +1,15 @@
 var express = require('express');
+
 var request = require('request');
 var _ = require('lodash');
 
 var jsonParser = require('body-parser').json();
+
 var app = express();
+
+// Routes
+require('./routes/routes.js')(app, express);
+
 
 var port = process.env.PORT || 8000;
 
@@ -30,6 +36,7 @@ var eventsDB = [
 
 
 app.use('/', express.static(__dirname + '/../client'));
+
 
 app.post('/api/users/signin', jsonParser, function(req, res) {
   //we want to check the database and see if the username and password exist
