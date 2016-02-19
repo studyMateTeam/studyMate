@@ -1,5 +1,6 @@
 angular.module('studyMate')
 
+<<<<<<< ac216f0106c318571ac89ac7c14aa56b4b9818ac
 .controller('eventsListCtrl',function($scope, $window, eventsListFact, logFact){
   $scope.data = [];
   $scope.allGuestLists = {};
@@ -59,7 +60,7 @@ angular.module('studyMate')
       // console.log('++line59 inside getGuestList: ', list);
     })
   }
-  
+
   $scope.displayEvent();
 
 });
