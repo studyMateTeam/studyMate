@@ -16,7 +16,16 @@ var userDB = [
   {username: "ellie",
   password: "ellie"
   }
+];
 
+var eventsDB = [
+  {
+    topic: "Javascript",
+    date: "2/18/16",
+    time: "1pm",
+    place: "Philz",
+    guests: []
+  }
 ];
 
 
@@ -37,17 +46,6 @@ app.post('/api/users/signin', jsonParser, function(req, res) {
   }
   console.log(validObj);
   res.send(validObj);
-  //SQL with bookshelf and knex
-  //pass in username and password
-  //verify that user exists
-  //verify that password matches
-
-  //if the user exists and password exists then we want to send back an object with an isValid property set to true
-  //res.send()
-  //{isValid: true};
-  //otherwise set the isValid property to false
-
-  //if they do then we want to go to the eventshome page
 });
 
 app.post('/api/users/signup', jsonParser, function(req, res) {
@@ -57,14 +55,36 @@ app.post('/api/users/signup', jsonParser, function(req, res) {
   var password = req.body.password;
 
   var userExists = {exists: false};
+  var flag = false;
   for(var j = 0; j < userDB.length; j++) {
     if(_.includes(userDB[j], username)) {
+      flag = true;
       userExists.exists = true;
       res.send(true);
       break;
+    }
   }
-}
+  if(!flag) {
+    userDB.push({username: username, password: password});
+  }
   res.send(false);
+});
+
+app.post('/api/events/addEvent', jsonParser, function(req, res) {
+  var topic = req.body.topic;
+  var time = req.body.time;
+  var place = req.body.place;
+  var date = req.body.date;
+  var guests = req.body.guests;
+
+  var event = {topic: topic, date:date, time: time, place:place, guests:guests};
+
+  eventsDB.push(event);
+  res.send(event);
+});
+
+app.get('/api/events/getEvent', jsonParser, function(req, res) {
+  res.send(eventsDB);
 });
 
 

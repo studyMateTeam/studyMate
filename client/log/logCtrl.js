@@ -23,7 +23,6 @@ angular.module('studyMate')
   $scope.signup = function () {
     logFact.signup($scope.user)
     .then(function(response) {
-      console.log(response)
       if(response) {
         $state.go('signin');
       } else {

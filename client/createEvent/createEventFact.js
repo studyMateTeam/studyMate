@@ -11,6 +11,7 @@ angular.module('studyMate')
       url: '/api/events/addEvent',
       data: eventDetails
     }).then(function success(response) {
+      console.log(response.data);
       return response.data;
     },function error(response) {
       console.log(response);
