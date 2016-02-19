@@ -1,5 +1,5 @@
 angular.module('studyMate')
-.factory('AuthFact', function ($http, $location, $window) {
+.factory('logFact', function ($http) {
 
   var signin = function (user) {
     return $http({
@@ -8,7 +8,7 @@ angular.module('studyMate')
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -19,13 +19,14 @@ angular.module('studyMate')
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      console.log(resp);
+      return resp.data;
     });
   };
-
 
   return {
     signin: signin,
     signup: signup
   };
+
 });
