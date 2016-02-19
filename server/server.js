@@ -12,9 +12,9 @@ var server = app.listen(port, function () {
 });
 
 var userDB = [
-
-  {username: "ellie",
-  password: "ellie"
+  {
+    username: "ellie",
+    password: "ellie"
   }
 ];
 
@@ -49,13 +49,13 @@ app.post('/api/users/signin', jsonParser, function(req, res) {
 });
 
 app.post('/api/users/signup', jsonParser, function(req, res) {
-  //we want to check if the user already exists, then we
 
   var username = req.body.username;
   var password = req.body.password;
 
   var userExists = {exists: false};
   var flag = false;
+
   for(var j = 0; j < userDB.length; j++) {
     if(_.includes(userDB[j], username)) {
       flag = true;
