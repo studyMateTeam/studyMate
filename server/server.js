@@ -7,7 +7,10 @@ var jsonParser = require('body-parser').json();
 
 var app = express();
 
-var db = require('db/schema.js');
+var db = require('./db/schema.js');
+
+var User = require('./models/userModel.js');
+var Users = require('./collections/userCollection.js');
 
 // Routes
 // require('./routes/routes.js')(app, express);
@@ -47,14 +50,21 @@ app.post('/api/users/signin', jsonParser, function(req, res) {
 
   var validObj = {isValid: false};
 
-  for(var i = 0; i < userDB.length; i++) {
-    var userObj = userDB[i];
-    if(userObj.username === username && userObj.password === password) {
-      validObj.isValid = true;
+  new User({ username: username }).fetch().then(function (found) {
+    console.log(found);
+    if(found) {
+      console.log("inside if(found)");
+      if (found.get('password') === password) {
+        console.log(found.get('password'));
+        validObj.isValid = true;
+        res.send(validObj);
+      };
+    } else {
+      console.log(validObj);
+      res.send(validObj);
     }
-  }
-  console.log(validObj);
-  res.send(validObj);
+  })
+
 });
 
 app.post('/api/users/signup', jsonParser, function(req, res) {
@@ -62,21 +72,20 @@ app.post('/api/users/signup', jsonParser, function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
 
-  var userExists = {exists: false};
-  var flag = false;
-
-  for(var j = 0; j < userDB.length; j++) {
-    if(_.includes(userDB[j], username)) {
-      flag = true;
-      userExists.exists = true;
+  new User({username: username}).fetch().then(function (found) {
+    if (found) {
       res.send(true);
-      break;
+    } else {
+      var user = new User({
+        username: username,
+        password: password
+      });
+      user.save().then(function (newUser){
+        Users.add(newUser);
+        res.send(false);
+      });
     }
-  }
-  if(!flag) {
-    userDB.push({username: username, password: password});
-  }
-  res.send(false);
+  });
 });
 
 app.post('/api/events/addEvent', jsonParser, function(req, res) {

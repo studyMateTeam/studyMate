@@ -12,4 +12,4 @@ var UserEventJoin = db.Model.extend({
   }
 });
 
-module.exports = UserEvent;
+module.exports = UserEventJoin;
