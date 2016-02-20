@@ -5,6 +5,9 @@ angular.module('studyMate')
   //  Post request
   //  use $http request
   //  if we end up doing google maps than add it here
+
+
+
   var addEvent = function(eventDetails) {
     return $http({
       method: 'POST',

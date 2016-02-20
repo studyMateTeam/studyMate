@@ -1,9 +1,9 @@
 <div class="createEvent" ng-controller="createEventCtrl">
   <form ng-submit="sendEvent()">
-    Topic: <input type="text" ng-model="event.topic"></input><br>
-    Place:<input type="text" ng-model="event.place"></input><br>
-    Date:<input type="text" ng-model="event.date"></input><br>
-    Time:<input type="text" ng-model="event.time"></input><br>
+    Topic: <input type="text" ng-model="event.topic" required></input><br>
+    Place:<input type="text" ng-model="event.place" required></input><br>
+    Date:<input type="date" ng-model="event.date" required min="{{currentDate | date: 'yyyy-MM-dd'}}"></input><br>
+    <input type="time" ng-model="event.time"></input><br>
     <button>Add</button>
   </form>
 </div>
@@ -14,6 +14,6 @@
     Place:<div class="place">{{event.place}}</div><br>
     Date:<div class="date">{{event.date}}</div><br>
     Time:<div class="time">{{event.time}}</div><br>
-    Guests:<div class="time">{{event.guests}}</div><br>
+    Guests:<div class="guest">{{event.guests}}</div><br>
   </div>
 </div>
