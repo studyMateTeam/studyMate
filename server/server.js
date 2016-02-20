@@ -1,4 +1,5 @@
 var express = require('express');
+var moment = require('moment');
 
 var request = require('request');
 var _ = require('lodash');
@@ -11,6 +12,8 @@ var db = require('./db/schema.js');
 
 var User = require('./models/userModel.js');
 var Users = require('./collections/userCollection.js');
+var Event = require('./models/eventModel.js');
+var Events = require('./collections/eventCollection.js');
 
 // Routes
 // require('./routes/routes.js')(app, express);
@@ -21,24 +24,6 @@ var port = process.env.PORT || 8000;
 var server = app.listen(port, function () {
   console.log('http://localhost:' + port);
 });
-
-var userDB = [
-  {
-    username: "ellie",
-    password: "ellie"
-  }
-];
-
-var eventsDB = [
-  {
-    topic: "Javascript",
-    date: "2/18/16",
-    time: "1pm",
-    place: "Philz",
-    guests: []
-  }
-];
-
 
 app.use('/', express.static(__dirname + '/../client'));
 
@@ -80,7 +65,7 @@ app.post('/api/users/signup', jsonParser, function(req, res) {
         username: username,
         password: password
       });
-      user.save().then(function (newUser){
+      user.save().then(function (newUser) {
         Users.add(newUser);
         res.send(false);
       });
@@ -90,20 +75,29 @@ app.post('/api/users/signup', jsonParser, function(req, res) {
 
 app.post('/api/events/addEvent', jsonParser, function(req, res) {
   var topic = req.body.topic;
-  var time = req.body.time;
   var place = req.body.place;
+  var time = req.body.time;
   var date = req.body.date;
   var guests = req.body.guests;
 
-  var event = {topic: topic, date:date, time: time, place:place, guests:guests};
+  var datetime = req.body.date + ' ' + req.body.time;
 
-  eventsDB.push(event);
-  res.send(eventsDB);
+  var event = new Event({
+    topic: topic,
+    place: place,
+    datetime: datetime
+  });
+
+  event.save().then(function (newEvent) {
+    Events.add(newEvent);
+    res.send(Events);
+  })
+
 });
 
-app.get('/api/events/getEvent', jsonParser, function(req, res) {
-  console.log(eventsDB);
-  res.send(eventsDB);
+app.get('/api/events/getEvents', jsonParser, function(req, res) {
+  // TODO: query events database and return the list of events
+  res.send(true);
 });
 
 
