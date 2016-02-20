@@ -15,7 +15,7 @@ var Users = require('./collections/userCollection.js');
 var Event = require('./models/eventModel.js');
 var Events = require('./collections/eventCollection.js');
 
-var db = require('db/schema.js');
+// var db = require('db/schema.js');
 
 
 // Routes
