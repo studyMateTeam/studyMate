@@ -1,6 +1,8 @@
 angular.module('studyMate')
 
 .controller('eventsListCtrl',function($scope, eventsListFact){
+  var self = this;
+
 
   $scope.displayEvent = function(){
     console.log('++line 6 inside eventsListCtrl');
@@ -19,10 +21,12 @@ angular.module('studyMate')
       $scope.data = data;
       console.log('++line 10 in eventsListCtrl Success: ',$scope.data);
 
+
     }).catch(function(err) {
       console.log('++line 12 in eventsList Ctrl Error: ',err);
     });
   };
-  $scope.displayEvent();
+
+  self.displayEvent();
 
 });
