@@ -1,16 +1,18 @@
 angular.module('studyMate')
 
 .controller('eventsListCtrl',function($scope, eventsListFact){
+  var self = this;
 
-  $scope.displayEvent = function(){
-      eventsListFact.getEvents()
+  self.displayEvent = function(){
+    eventsListFact.getEvents()
     .then(function(data){
-      $scope.data = data;
-      console.log($scope.data);
+      self.data = data;
+      console.log(self.data);
     }).catch(function(err) {
       console.log(err);
     });
   };
-  $scope.displayEvent();
+
+  self.displayEvent();
 
 });

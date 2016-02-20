@@ -6,4 +6,5 @@ angular.module('studyMate')
   $scope.sendEvent = function() {
     createEventFact.addEvent($scope.event);
   };
+
 });

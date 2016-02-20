@@ -4,9 +4,9 @@ angular.module('studyMate')
   var getEvents = function() {
     return $http({
       method: 'GET',
-      url: '/api/events/getEvent',
+      url: '/api/events/getEvents',
     }).then( function successs(response) {
-      console.log(response)
+      console.log(response);
       return response.data;
     }, function error(response) {
       console.log(response);

@@ -15,6 +15,9 @@ var Users = require('./collections/userCollection.js');
 var Event = require('./models/eventModel.js');
 var Events = require('./collections/eventCollection.js');
 
+var db = require('db/schema.js');
+
+
 // Routes
 // require('./routes/routes.js')(app, express);
 
@@ -24,6 +27,7 @@ var port = process.env.PORT || 8000;
 var server = app.listen(port, function () {
   console.log('http://localhost:' + port);
 });
+
 
 app.use('/', express.static(__dirname + '/../client'));
 
@@ -43,12 +47,12 @@ app.post('/api/users/signin', jsonParser, function(req, res) {
         console.log(found.get('password'));
         validObj.isValid = true;
         res.send(validObj);
-      };
+      }
     } else {
       console.log(validObj);
       res.send(validObj);
     }
-  })
+  });
 
 });
 
@@ -91,7 +95,7 @@ app.post('/api/events/addEvent', jsonParser, function(req, res) {
   event.save().then(function (newEvent) {
     Events.add(newEvent);
     res.send(Events);
-  })
+  });
 
 });
 
