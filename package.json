@@ -1,0 +1,36 @@
+{
+  "name": "studymate",
+  "version": "1.0.0",
+  "description": "App that finds you a friend to study with",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm install bower -g && bower cache clean && bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadpool-studymate/studymate"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deadpool-studymate/studymate/issues"
+  },
+  "homepage": "https://github.com/deadpool-studymate/studymate#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "bookshelf": "^0.9.2",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jwt-simple": "^0.4.1",
+    "knex": "^0.10.0",
+    "lodash": "^4.5.0",
+    "moment": "^2.11.2",
+    "morgan": "^1.6.1",
+    "mysql": "^2.10.2",
+    "path": "^0.12.7",
+    "q": "^1.4.1",
+    "request": "^2.69.0"
+  }
+}
