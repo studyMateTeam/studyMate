@@ -6,6 +6,11 @@ $scope.data = [];
     console.log('++line 6 inside eventsListCtrl');
       eventsListFact.getEvents()
     .then(function(data){
+      var formatted = data.map(function(val) {
+        var temp = val;
+        temp.datetime = moment(temp.datetime, moment.ISO_8601).format('MMM Do YY, h:mm A');
+        return temp;
+      });
       $scope.data = data;
       console.log('++line 10 in eventsListCtrl Success: ',$scope.data);
     }).catch(function(err) {
