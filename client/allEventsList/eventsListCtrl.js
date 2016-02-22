@@ -8,7 +8,7 @@ $scope.data = [];
     .then(function(data){
       var formatted = data.map(function(val) {
         var temp = JSON.parse(JSON.stringify(val));
-        temp.datetime = moment(temp.datetime, moment.ISO_8601).format('MMM Do YY, h:mm A');
+        temp.datetime = moment(temp.datetime, moment.ISO_8601).utcOffset(480).format('MMM Do YYYY, h:mm A');
         return temp;
       });
       $scope.data = formatted;
