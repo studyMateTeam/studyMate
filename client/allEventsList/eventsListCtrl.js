@@ -1,15 +1,20 @@
 angular.module('studyMate')
 
 .controller('eventsListCtrl',function($scope, eventsListFact){
-  $scope.data = [];
-
+$scope.data = [];
   $scope.displayEvent = function(){
+    console.log('++line 6 inside eventsListCtrl');
       eventsListFact.getEvents()
     .then(function(data){
-      $scope.data.push(data);
-      console.log($scope.data);
+      var formatted = data.map(function(val) {
+        var temp = JSON.parse(JSON.stringify(val));
+        temp.datetime = moment(temp.datetime, moment.ISO_8601).format('MMM Do YY, h:mm A');
+        return temp;
+      });
+      $scope.data = formatted;
+      console.log('++line 10 in eventsListCtrl Success: ',$scope.data);
     }).catch(function(err) {
-      console.log(err);
+      console.log('++line 12 in eventsList Ctrl Error: ',err);
     });
   };
   $scope.displayEvent();
