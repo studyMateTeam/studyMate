@@ -7,11 +7,11 @@ $scope.data = [];
       eventsListFact.getEvents()
     .then(function(data){
       var formatted = data.map(function(val) {
-        var temp = val;
+        var temp = JSON.parse(JSON.stringify(val));
         temp.datetime = moment(temp.datetime, moment.ISO_8601).format('MMM Do YY, h:mm A');
         return temp;
       });
-      $scope.data = data;
+      $scope.data = formatted;
       console.log('++line 10 in eventsListCtrl Success: ',$scope.data);
     }).catch(function(err) {
       console.log('++line 12 in eventsList Ctrl Error: ',err);
