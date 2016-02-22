@@ -10,10 +10,10 @@
 
 <div class="allEvents" ng-controller="eventsListCtrl">
   <div class="indivEvent" ng-repeat="event in data">
-    Topic:<div class="topic">{{event.topic}}</div><br>
-    Place:<div class="place">{{event.place}}</div><br>
-    Date:<div class="date">{{event.date}}</div><br>
-    Time:<div class="time">{{event.time}}</div><br>
-    Guests:<div class="guest">{{event.guests}}</div><br>
+    <div class="topic">Topic:{{event.topic}}</div><br>
+    <div class="place">Place:{{event.place}}</div><br>
+    <div class="date">Date:{{event.datetime}}</div><br>
+    <!-- <div class="time">Time:{{event.time}}</div><br> -->
+    <!-- Guests:<div class="guest">{{event.guests}}</div><br> -->
   </div>
 </div>

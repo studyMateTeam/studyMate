@@ -97,7 +97,6 @@ app.post('/api/events/addEvent', jsonParser, function(req, res) {
 
 app.get('/api/events/getEvents', jsonParser, function(req, res) {
   // TODO: query events database and return the list of events
-  console.log('++line 100 inside getEvents',res);
 
   Events
   .fetch()
