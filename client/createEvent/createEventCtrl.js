@@ -6,7 +6,6 @@ angular.module('studyMate')
 
   $scope.sendEvent = function() {
     if($scope.event.date.getMonth() === $scope.currentDate.getMonth() && $scope.event.date.getYear() === $scope.currentDate.getYear() && $scope.event.date.getDate() === $scope.currentDate.getDate()){
-      debugger;
     }
     else{
       console.log('try agian');
