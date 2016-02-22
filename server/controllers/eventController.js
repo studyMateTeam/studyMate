@@ -9,7 +9,7 @@ module.exports = {
     var date = req.body.date;
     var guests = req.body.guests;
 
-    var datetime = req.body.date + ' ' + req.body.time;
+    var datetime = req.body.date.slice(0,11) + req.body.time.slice(11);
 
     var event = new Event({
       topic: topic,
@@ -24,9 +24,12 @@ module.exports = {
   },
 
   getEvents: function (req, res) {
-    console.log('inside eventController.getEvents');
-    console.log(req);
-    res.send('hello');
+    Events
+    .fetch()
+    .then(function(collection) {
+      collection = collection.toJSON();
+      res.send(collection);
+    });
   }
 
 }
