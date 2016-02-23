@@ -12,7 +12,22 @@ angular.module('studyMate')
       console.log('++line 12 inside eventListFact Error: ',response);
     });
   };
+
+  var eventJoin = function(user, event) {
+    console.log('++line 20 inside eventJoin in eventsListFact');
+    return $http({
+      method: 'POST',
+      url: 'api/events/eventJoin',
+      data: user, event
+    })
+    .then(function (resp) {
+      console.log(resp);
+      return resp.data;
+    })
+  }
+
   return {
-    getEvents: getEvents
+    getEvents: getEvents,
+    eventJoin: eventJoin
   };
 });

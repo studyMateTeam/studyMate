@@ -21,8 +21,15 @@ angular.module('studyMate')
     });
   };
 
-  $scope.eventJoin = function() {
-    console.log('Joining Event');
+  $scope.eventJoin = function(event) {
+    console.log('++line 26 in eventJoin in eventsListCtrl');
+    lwindow.localStorage.getItem('com.studymate')
+    eventsListFact.eventJoin($scope.user, $scope.event)
+    .then(function(response) {
+      if (response.isValid) {
+        console.log('Valid response from eventsListFact');
+      }
+    })
 
   };
 
