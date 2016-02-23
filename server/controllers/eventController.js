@@ -70,14 +70,21 @@ module.exports = {
         var userid = found.id;
 
         // insert into userevent table the userid and eventid
-        var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
-        newUserEvent.save().then(function (userEventInsert) {
-          UserEvents.add(userEventInsert);
-          validObj.isValid = true;
-          res.send(validObj);
-        });
+        new Userevent({user_id: userid, event_id: eventid}).fetch().then(function (found) {
+          // cannot join the same event twice
+          if (found) {
+            res.send(validObj);
+          } else {
+            var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
+            newUserEvent.save().then(function (userEventInsert) {
+              UserEvents.add(userEventInsert);
+              validObj.isValid = true;
+              res.send(validObj);
+            });
+          }
+        })
       } else {
-        res.send(validObj);
+        res.send(validObj)
       }
     })
   }
