@@ -39,9 +39,15 @@ angular.module('studyMate')
         console.log('Event join failed');
       }
     })
-
   };
 
+  $scope.getGuestList = function (event) {
+    console.log(event.id);
+    eventsListFact.getGuestList(event.id).then(function (data) {
+      console.log(data);
+    })
+  }
+  
   $scope.displayEvent();
 
 });
