@@ -10,6 +10,7 @@ angular.module('studyMate')
     logFact.signin($scope.user)
     .then(function(response) {
       if(response.isValid) {
+        $window.localStorage.setItem('com.studymate', response.token);
         $state.go('eventsHome');
       } else {
         $state.go('signup');
@@ -23,10 +24,11 @@ angular.module('studyMate')
   $scope.signup = function () {
     logFact.signup($scope.user)
     .then(function(response) {
-      if(response) {
-        $state.go('signin');
-      } else {
+      if(response.isValid) {
+        $window.localStorage.setItem('com.studymate', response.token);
         $state.go('eventsHome');
+      } else {
+        $state.go('signin');
       }
     });
   };
