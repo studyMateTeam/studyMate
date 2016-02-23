@@ -18,8 +18,8 @@
   <div class="indivEvent" ng-repeat="event in data | orderBy:'datetime'">
     <div class="topic">Topic:{{event.topic}}</div><br>
     <div class="place">Place:{{event.place}}</div><br>
-    <div class="date">Date:{{event.formatted}}</div><br>
-    <!-- <div class="time">Time:{{event.time}}</div><br> -->
-    <!-- Guests:<div class="guest">{{event.guests}}</div><br> -->
+    <div class="date">Date:{{event.formatted}}
+    <button ng-click="eventJoin()">Join</button></div><br>
+    <div class="guest">Attendees:{{$scope.event.token}}</div><br>
   </div>
 </div>
