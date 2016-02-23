@@ -1,3 +1,12 @@
+<!-- Chris Kuh says having two different controllers in the same file is gonna cause problems. Refactor later? -->
+<!-- NAV BAR -->
+<ul class="navbar" ng-controller="eventsListCtrl">
+  <li><a id="active" href="#/eventsHome">Home</a></li>
+  <li ng-click="signout()"><a href="#/signin">Logout</a></li>
+</ul>
+
+<div class="allEvents" ng-controller="eventsListCtrl as elc">
+
 <div class="createEvent" ng-controller="createEventCtrl">
   <form ng-submit="sendEvent()">
     Topic: <input type="text" ng-model="event.topic" required></input><br>
