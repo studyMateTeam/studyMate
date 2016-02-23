@@ -7,6 +7,12 @@ angular.module('studyMate')
     logFact.signout();
   }
 
+  $scope.upcomingEvents = function (obj) {
+    var date = new Date();
+    var eventDate = new Date(obj.datetime);
+    return eventDate >= date;
+  };
+
   $scope.displayEvent = function(){
     console.log('++line 6 inside eventsListCtrl');
     eventsListFact.getEvents()
@@ -23,7 +29,7 @@ angular.module('studyMate')
 
   $scope.eventJoin = function(event) {
     console.log('++line 20 in eventJoin in eventsListCtrl');
-    
+
     var token = $window.localStorage.getItem('com.studymate');
 
     var eventJoinData = {

@@ -15,7 +15,7 @@
 </div>
 
 <div class="allEvents" ng-controller="eventsListCtrl">
-  <div class="indivEvent" ng-repeat="event in data | orderBy:'datetime'">
+  <div class="indivEvent" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
     <div class="topic">Topic:{{event.topic}}</div><br>
     <div class="place">Place:{{event.place}}</div><br>
     <div class="date">Date:{{event.formatted}}
