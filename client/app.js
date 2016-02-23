@@ -4,15 +4,20 @@ angular.module('studyMate', ['ui.router'])
   .state('eventsHome', {
     url: '/eventsHome',
     templateUrl: 'allEventsList/eventsHome.html',
-    authenticate: true
+    authenticate: true,
+    signedin: false
   })
   .state('signin', {
     url: '/signin',
-    templateUrl: 'log/signin.html'
+    templateUrl: 'log/signin.html',
+    authenticate: false,
+    signedin: false
   })
   .state('signup', {
     url: '/signup',
-    templateUrl: 'log/signup.html'
+    templateUrl: 'log/signup.html',
+    authenticate: false,
+    signedin: false
   });
   $urlRouterProvider.otherwise('/signin');
   $httpProvider.interceptors.push('AttachTokens');
@@ -32,13 +37,18 @@ angular.module('studyMate', ['ui.router'])
   return attach;
 })
 
-.run(function ($rootScope, $location, logFact) {
+.run(function ($rootScope, $state, $location, logFact) {
   $rootScope.url = "http://localhost:8000";
-
-  $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+  $rootScope.$on('$stateChangeStart', function (e, toState) {
+    //if authenticate prop is true but token doesnt exist
     if (toState.authenticate && !logFact.isAuth()) {
       e.preventDefault();
-      $location.path('/signin');
+      $state.go('signin');
+    }
+    //if authenticate prop is false but token exists
+    if(!toState.authenticate && logFact.isAuth()) {
+      e.preventDefault();
+      $state.go('eventsHome');
     }
   });
 });
