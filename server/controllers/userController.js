@@ -1,7 +1,7 @@
 var User = require('../models/userModel.js');
 var Users = require('../collections/userCollection.js');
-var Q = require('q');
 var jwt = require('jwt-simple');
+var bcrypt = require('bcrypt-nodejs');
 
 // token secret
 var secret = 'deadpoolsecret';
@@ -17,13 +17,15 @@ module.exports = {
 
     new User({ username: username }).fetch().then(function (found) {
       if (found) {
-        if (found.get('password') === password) {
-          console.log('password matched, creating a token');
-          var token = jwt.encode({username: username}, secret);
-          validObj.token = token;
-          validObj.isValid = true;
-          res.send(validObj);
-        };
+        bcrypt.compare(password, found.get('password'), function (err, result) {
+          if (result) {
+            console.log('password matched, creating a token');
+            var token = jwt.encode({username: username}, secret);
+            validObj.token = token;
+            validObj.isValid = true;
+            res.send(validObj);
+          }
+        });
       } else {
         res.send(validObj);
       }
@@ -38,31 +40,29 @@ module.exports = {
 
     new User({username: username}).fetch().then(function (found) {
       if (found) {
-        console.log('user already created', found);
         res.send(validObj);
       } else {
-        var user = new User({
-          username: username,
-          password: password
-        });
-        
-        var token = jwt.encode({username: username}, secret);
-        validObj.token = token;
-        validObj.isValid = true;
+        bcrypt.genSalt(10, function (err, salt) {
+          bcrypt.hash(password, salt, null, function (err, hash) {
+            var user = new User({
+              username: username,
+              password: hash
+            });
 
-        user.save().then(function (newUser) {
-          Users.add(newUser);
-          res.send(validObj);
-        });
+            var token = jwt.encode({username: username}, secret);
+            validObj.token = token;
+            validObj.isValid = true;
+
+            user.save().then(function (newUser) {
+              Users.add(newUser);
+              res.send(validObj);
+            });
+          });
+        })
       }
     });
     
   },
-
-  // checkAuth: function (req, res, next) {
-
-  // }
-
 
 
 }
