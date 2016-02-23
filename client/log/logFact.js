@@ -31,7 +31,6 @@ angular.module('studyMate')
 
   var signout = function () {
     $window.localStorage.removeItem('com.studymate');
-    $location.path('/signin');
   }
 
   return {
