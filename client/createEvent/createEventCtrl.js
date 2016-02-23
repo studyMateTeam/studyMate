@@ -1,6 +1,6 @@
 angular.module('studyMate')
 
-.controller('createEventCtrl', function($window, $scope, createEventFact, eventsListFact){
+.controller('createEventCtrl', function($window, $scope, $state, createEventFact, eventsListFact){
   $scope.event = { guests: [] }; // initialize the event object to have an empty array of guests
   $scope.currentDate = new Date();
 
@@ -27,6 +27,8 @@ angular.module('studyMate')
     }
 
 
+
+    $state.reload();
     $window.location.href = '/#/eventsHome';
   };
 });
