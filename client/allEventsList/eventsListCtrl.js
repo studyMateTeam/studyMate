@@ -1,6 +1,6 @@
 angular.module('studyMate')
 
-.controller('eventsListCtrl',function($scope, eventsListFact, logFact){
+.controller('eventsListCtrl',function($scope, $window, eventsListFact, logFact){
   $scope.data = [];
 
   $scope.signout = function () {
@@ -21,10 +21,17 @@ angular.module('studyMate')
     });
   };
 
-  $scope.eventJoin = function() {
+  $scope.eventJoin = function(event) {
     console.log('++line 20 in eventJoin in eventsListCtrl');
-    // $scope.event.token = window.localStorage.getItem('com.studymate');
-    eventsListFact.eventJoin($scope.user, $scope.event)
+    
+    var token = $window.localStorage.getItem('com.studymate');
+
+    var eventJoinData = {
+      token: token,
+      event: event
+    };
+
+    eventsListFact.eventJoin(eventJoinData)
     .then(function(response) {
       if (response.isValid) {
         console.log('Valid response from eventsListFact');
