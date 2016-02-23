@@ -1,7 +1,7 @@
 angular.module('studyMate')
 
 .controller('eventsListCtrl',function($scope, eventsListFact){
-$scope.data = [];
+  $scope.data = [];
   $scope.displayEvent = function(){
     console.log('++line 6 inside eventsListCtrl');
       eventsListFact.getEvents()
