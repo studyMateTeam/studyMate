@@ -10,8 +10,13 @@
 
 }
 
+.createEvent  {
+    position: relative;
+    top:50px;
+}
 .allEvents {
-  padding-top: 60px
+    position: relative;
+    top:70px;
 }
 
 .navbar li {
