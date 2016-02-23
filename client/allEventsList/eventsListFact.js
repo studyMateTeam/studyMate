@@ -14,7 +14,7 @@ angular.module('studyMate')
   };
 
   var eventJoin = function(user, event) {
-    console.log('++line 20 inside eventJoin in eventsListFact');
+    console.log('++line 17 inside eventJoin in eventsListFact');
     return $http({
       method: 'POST',
       url: 'api/events/eventJoin',

@@ -9,7 +9,7 @@ angular.module('studyMate')
 
   $scope.displayEvent = function(){
     console.log('++line 6 inside eventsListCtrl');
-      eventsListFact.getEvents()
+    eventsListFact.getEvents()
     .then(function(data){
       data.forEach(function(value){
         value.formatted = moment(value.datetime, moment.ISO_8601).utcOffset(480).format('MMM Do YYYY, h:mm A');
@@ -21,13 +21,15 @@ angular.module('studyMate')
     });
   };
 
-  $scope.eventJoin = function(event) {
-    console.log('++line 26 in eventJoin in eventsListCtrl');
-    lwindow.localStorage.getItem('com.studymate')
+  $scope.eventJoin = function() {
+    console.log('++line 20 in eventJoin in eventsListCtrl');
+    // $scope.event.token = window.localStorage.getItem('com.studymate');
     eventsListFact.eventJoin($scope.user, $scope.event)
     .then(function(response) {
       if (response.isValid) {
         console.log('Valid response from eventsListFact');
+      } else {
+        console.log('Event join failed');
       }
     })
 
