@@ -1,13 +1,11 @@
-<form class="form-signin">
-<h2 class="form-signin-heading">Please Sign In</h2>
-  <div id='signin'>
-    <form name="signinForm" ng-submit='signin()' ng-controller="logController">
-      <label for="inputName" class="sr-only">Name</label>
-      <input type='text' id="inputName" class="form-control" placeholder="Username" ng-model='user.username' required autofocus="">
-      <label for="password" class="sr-only">Password</label>
-      <input type="password" id="password" class="form-control" placeholder="Password" ng-model='user.password' required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+<div id='signin'>
+  <form name="signinForm" class="form-signin" ng-submit='signin()' ng-controller="logController">
+    <h2 class="form-signin-heading">Please Sign In</h2>
+    <label for="inputName" class="sr-only">Name</label>
+    <input type='text' id="inputName" class="form-control" placeholder="Username" ng-model='user.username' required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" ng-model='user.password' required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
-  </div>
-</form>
+  </form>
+</div>
