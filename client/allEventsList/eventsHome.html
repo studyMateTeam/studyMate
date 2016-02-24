@@ -26,7 +26,7 @@
           <span class="glyphicon glyphicon-time"></span>
           <input class="form-control" type="time" ng-model="event.time" required><br>
 
-          <button class="btn-primary">Add</button>
+          <button class="btn btn-primary">Add</button>
         </form>
       </div>
     </div>
@@ -40,12 +40,23 @@
         <h2>Choose a study event!</h2>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
-            <span class="text-left pull-left"><strong>Topic:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.topic}}</span><br>
-            <span class="text-left pull-left"><strong>Place:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.place}}</span><br>
-            <span class="text-left pull-left"><strong>Date:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.formatted}}</span>
-            <button class="btn-success pull-right" ng-click="eventJoin(event)">Join</button><br>
+            <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
+            <!-- <span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> -->
+            <span class="col-sm-4 content text-left">{{event.topic}}</span>
+            <br>
+            <span class="col-sm-2 text-left pull-left"><strong>Place:</strong></span>
+            <!-- <span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> -->
+            <span class="col-sm-4 content text-left">{{event.place}}</span>
+            <br>
+            <span class="col-sm-2 text-left pull-left"><strong>Date:</strong></span>
+            <!-- <span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> -->
+            <span class="col-sm-4 content text-left">{{event.formatted}}</span>
+            <button class="btn btn-success pull-right" ng-click="eventJoin(event)">Join</button>
+            <br>
             <div ng-init="getGuestList(event)"></div>
-            <span class="text-left pull-left"><strong>Attendees:</strong></span><span class="guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span><br>
+            <span class="col-sm-2 text-left pull-left"><strong>Attendees:</strong></span>
+            <span class="col-sm-1 guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span>
+            <br>
 
           </li>
         </ul>
