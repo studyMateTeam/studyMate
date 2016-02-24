@@ -12,7 +12,8 @@ var knex = require('knex')({
 var Bookshelf = require('bookshelf')(knex);
 var db = Bookshelf;
 
-db.knex.schema.hasTable('users').then(function(exists) {
+db.knex.schema.hasTable('users')
+.then(function(exists) {
   if (!exists) {
     knex.schema.createTable('users', function(user) {
       user.increments('id').primary();
@@ -24,7 +25,8 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('events').then(function(exists) {
+db.knex.schema.hasTable('events')
+.then(function(exists) {
   if (!exists) {
     knex.schema.createTable('events', function(event) {
       event.increments('id').primary();
@@ -37,7 +39,8 @@ db.knex.schema.hasTable('events').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('usereventjoins').then(function(exists) {
+db.knex.schema.hasTable('usereventjoins')
+.then(function(exists) {
   if (!exists) {
     knex.schema.createTable('usereventjoins', function(userevent) {
       userevent.integer('user_id');

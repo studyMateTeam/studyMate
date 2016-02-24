@@ -22,86 +22,82 @@ module.exports = {
       datetime: datetime
     });
 
-    event.save().then(function (newEvent) {
+    event.save().then(function(newEvent) {
       Events.add(newEvent);
       var eventid = event.id;
-      
+
       // need to get the userid of the user who created the event
-      new User({ username: eventCreateUser }).fetch().then(function (found) {
+      new User({ username: eventCreateUser }).fetch().then(function(found) {
         if (found) {
           var userid = found.id;
 
           // insert into userevent table the userid and eventid
           var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
-          newUserEvent.save().then(function (userEventInsert) {
+          newUserEvent.save().then(function(userEventInsert) {
             UserEvents.add(userEventInsert);
             res.send(Events);
           });
         }
-      })
+      });
     });
-
   },
 
-  getEvents: function (req, res) {
-    Events.fetch().then(function (collection) {
+  getEvents: function(req, res) {
+    Events.fetch().then(function(collection) {
       collection = collection.toJSON();
       res.send(collection);
     });
   },
 
-  eventJoin: function (req, res) {
+  eventJoin: function(req, res) {
     var token = req.body.token;
     var eventid = req.body.event.id;
     var eventJoinUser = jwt.decode(token, 'deadpoolsecret').username;
     var validObj = {isValid: false};
 
-    new User({username: eventJoinUser}).fetch().then(function (found) {
-      if (found) {
+    new User({username: eventJoinUser}).fetch()
+    .then(function(found) {
+      if(found) {
         var userid = found.id;
-
         // insert into userevent table the userid and eventid
-        new Userevent({user_id: userid, event_id: eventid}).fetch().then(function (found) {
+        new Userevent({user_id: userid, event_id: eventid}).fetch()
+        .then(function(found) {
           // cannot join the same event twice
-          if (found) {
+          if(found) {
             res.send(validObj);
           } else {
             var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
-            newUserEvent.save().then(function (userEventInsert) {
+            newUserEvent.save()
+            .then(function(userEventInsert) {
               UserEvents.add(userEventInsert);
               validObj.isValid = true;
               res.send(validObj);
             });
           }
-        })
+        });
       } else {
-        res.send(validObj)
+        res.send(validObj);
       }
     });
   },
 
-  getGuestList: function (req, res) {
-    console.log('inside eventController.getGuestList');
-    console.log(req.body);
+  getGuestList: function(req, res) {
     // GET request that sends the eventid, and returns an object with the attending users
     var eventid = req.body.eventid;
 
     // SQL query to get all users from eventid
-    knex('usereventjoins').where('event_id', eventid).then(function (collection) {
-      console.log(collection);
+    knex('usereventjoins').where('event_id', eventid)
+    .then(function(collection) {
       var guestList = [];
-      collection.forEach(function (user) {
+      collection.forEach(function(user) {
         guestList.push(user.user_id);
       });
 
-      console.log(guestList);
-
-      knex.select('username').from('users').whereIn('id', guestList).then(function (list) {
+      knex.select('username').from('users').whereIn('id', guestList)
+      .then(function(list) {
         console.log(list);
         res.send(list);
-      })
-
+      });
     });
   }
-
-}
+};
