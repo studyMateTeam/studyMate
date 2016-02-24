@@ -42,6 +42,7 @@ angular.module('studyMate')
     .then(function(response) {
       if (response.isValid) {
         console.log('Valid response from eventsListFact');
+        $scope.getGuestList(event);
       } else {
         console.log('Event join failed');
       }

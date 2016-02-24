@@ -45,7 +45,7 @@
             <span class="text-left pull-left"><strong>Date:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.formatted}}</span>
             <button class="btn-success pull-right" ng-click="eventJoin(event)">Join</button><br>
             <div ng-init="getGuestList(event)"></div>
-            <span class="text-left pull-left" ng-repeat="guest in allGuestLists[event.id]"><strong>Attendees:</strong></span><span class="guestList" > {{guest}} </span><br>
+            <span class="text-left pull-left"><strong>Attendees:</strong></span><span class="guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span><br>
 
           </li>
         </ul>
