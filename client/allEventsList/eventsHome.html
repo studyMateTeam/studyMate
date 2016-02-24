@@ -5,7 +5,7 @@
 </ul>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div id="createEvent" class="col-sm-5" centered>
+    <div id="createEvent" class="col-md-5 col-sm-12 col-xs-12" centered>
       <div class="panel panel-primary" ng-controller="createEventCtrl">
         <div class="panel-heading">
           Post an Event!
@@ -29,8 +29,10 @@
     </div>
   </div>
 
-  <div class="row-fluid">
-    <div id="eventsList" class="col-sm-7" centered>
+<div class="clearfix visible-sm"></div>
+
+  <!-- <div class="row-fluid"> -->
+    <div id="eventsList" class="col-md-7 col-sm-12 col-xs-12" centered>
       <div ng-controller="eventsListCtrl">
         <h2>Choose a study event!</h2>
         <ul class="list-group">
@@ -53,5 +55,5 @@
         </ul>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
