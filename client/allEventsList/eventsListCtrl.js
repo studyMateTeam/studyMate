@@ -49,14 +49,13 @@ angular.module('studyMate')
   };
 
   $scope.getGuestList = function (event) {
-    console.log(event.id);
     var list = [];
     eventsListFact.getGuestList(event.id).then(function (data) {
       data.forEach(function (item) {
         list.push(item.username);
       })
       $scope.allGuestLists[event.id] = list;
-      console.log($scope.allGuestLists);
+      // console.log('++line59 inside getGuestList: ', list);
     })
   }
   
