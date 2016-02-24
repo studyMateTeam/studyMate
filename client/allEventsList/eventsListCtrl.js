@@ -1,6 +1,6 @@
 angular.module('studyMate')
 
-<<<<<<< HEAD
+
 .controller('eventsListCtrl', function($scope, $window, $state, eventsListFact, logFact) {
   $scope.data = [];
   $scope.allGuestLists = {};
@@ -59,21 +59,5 @@ angular.module('studyMate')
   }
 
   $scope.displayEvent();
-=======
-.controller('eventsListCtrl',function($scope, eventsListFact){
-  var self = this;
-
-  self.displayEvent = function(){
-    eventsListFact.getEvents()
-    .then(function(data){
-      self.data = data;
-      console.log(self.data);
-    }).catch(function(err) {
-      console.log(err);
-    });
-  };
-
-  self.displayEvent();
->>>>>>> master
 
 });
