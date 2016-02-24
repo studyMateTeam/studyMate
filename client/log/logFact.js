@@ -8,9 +8,9 @@ angular.module('studyMate')
       url: '/api/users/signin',
       data: user
     })
-    .then(function (resp) {
-      return resp.data;
-    });
+      .then(function (resp) {
+        return resp.data;
+      });
   };
 
   var signup = function (user) {
@@ -19,10 +19,10 @@ angular.module('studyMate')
       url: '/api/users/signup',
       data: user
     })
-    .then(function (resp) {
-      console.log(resp);
-      return resp.data;
-    });
+      .then(function (resp) {
+        console.log(resp);
+        return resp.data;
+      });
   };
 
   var isAuth = function () {

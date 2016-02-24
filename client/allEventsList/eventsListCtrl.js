@@ -16,14 +16,14 @@ angular.module('studyMate')
 
   $scope.displayEvent = function() {
     eventsListFact.getEvents()
-    .then(function(data) {
-      data.forEach(function(value) {
-        value.formatted = moment(value.datetime, moment.ISO_8601).utcOffset(480).format('MMM Do YYYY, h:mm A');
+      .then(function(data) {
+        data.forEach(function(value) {
+          value.formatted = moment(value.datetime, moment.ISO_8601).utcOffset(480).format('MMM Do YYYY, h:mm A');
+        });
+        $scope.data = data;
+      }).catch(function(err) {
+        console.log(err);
       });
-      $scope.data = data;
-    }).catch(function(err) {
-      console.log(err);
-    });
   };
 
   $scope.eventJoin = function(event) {
@@ -36,25 +36,25 @@ angular.module('studyMate')
     };
 
     eventsListFact.eventJoin(eventJoinData)
-    .then(function(response) {
-      if (response.isValid) {
-        $scope.getGuestList(event);
-      } else {
-        console.log('Event join failed');
-      }
-    });
-    $state.reload();
+      .then(function(response) {
+        if (response.isValid) {
+          $scope.getGuestList(event);
+        } else {
+          console.log('Event join failed');
+        }
+      });
+      $state.reload();
   };
 
   $scope.getGuestList = function(event) {
     var list = [];
     eventsListFact.getGuestList(event.id)
-    .then(function(data) {
-      data.forEach(function(item) {
-        list.push(item.username);
-      });
-      $scope.allGuestLists[event.id] = list;
-})
+      .then(function(data) {
+        data.forEach(function(item) {
+          list.push(item.username);
+        });
+        $scope.allGuestLists[event.id] = list;
+      })
   }
 
   $scope.displayEvent();
