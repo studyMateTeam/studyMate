@@ -1,4 +1,4 @@
-# studymate
+# StudyMate
 
 > *"Wanna study, mate?"*
 
