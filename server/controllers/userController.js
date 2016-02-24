@@ -39,28 +39,29 @@ module.exports = {
     var validObj = {isValid: false};
 
     new User({username: username}).fetch()
-    .then(function(found) {
-      if(found) {
-        res.send(validObj);
-      } else {
-        bcrypt.genSalt(10, function(err, salt) {
-          bcrypt.hash(password, salt, null, function(err, hash) {
-            var user = new User({
-              username: username,
-              password: hash
-            });
+      .then(function(found) {
+        if(found) {
+          res.send(validObj);
+        } else {
+          bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(password, salt, null, function(err, hash) {
+              var user = new User({
+                username: username,
+                password: hash
+              });
 
-            var token = jwt.encode({username: username}, secret);
-            validObj.token = token;
-            validObj.isValid = true;
+              var token = jwt.encode({username: username}, secret);
+              validObj.token = token;
+              validObj.isValid = true;
 
-            user.save().then(function(newUser) {
-              Users.add(newUser);
-              res.send(validObj);
+              user.save()
+                .then(function(newUser) {
+                  Users.add(newUser);
+                  res.send(validObj);
+                });
             });
           });
-        });
-      }
-    });
+        }
+      });
   }
 };

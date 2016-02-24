@@ -22,31 +22,35 @@ module.exports = {
       datetime: datetime
     });
 
-    event.save().then(function(newEvent) {
-      Events.add(newEvent);
-      var eventid = event.id;
+    event.save()
+      .then(function(newEvent) {
+        Events.add(newEvent);
+        var eventid = event.id;
 
-      // need to get the userid of the user who created the event
-      new User({ username: eventCreateUser }).fetch().then(function(found) {
-        if (found) {
-          var userid = found.id;
+        // need to get the userid of the user who created the event
+        new User({ username: eventCreateUser }).fetch()
+          .then(function(found) {
+            if (found) {
+              var userid = found.id;
 
-          // insert into userevent table the userid and eventid
-          var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
-          newUserEvent.save().then(function(userEventInsert) {
-            UserEvents.add(userEventInsert);
-            res.send(Events);
+              // insert into userevent table the userid and eventid
+              var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
+              newUserEvent.save()
+                .then(function(userEventInsert) {
+                  UserEvents.add(userEventInsert);
+                  res.send(Events);
+                });
+            }
           });
-        }
       });
-    });
   },
 
   getEvents: function(req, res) {
-    Events.fetch().then(function(collection) {
-      collection = collection.toJSON();
-      res.send(collection);
-    });
+    Events.fetch()
+      .then(function(collection) {
+        collection = collection.toJSON();
+        res.send(collection);
+      });
   },
 
   eventJoin: function(req, res) {
@@ -56,29 +60,29 @@ module.exports = {
     var validObj = {isValid: false};
 
     new User({username: eventJoinUser}).fetch()
-    .then(function(found) {
-      if(found) {
-        var userid = found.id;
-        // insert into userevent table the userid and eventid
-        new Userevent({user_id: userid, event_id: eventid}).fetch()
-        .then(function(found) {
-          // cannot join the same event twice
-          if(found) {
-            res.send(validObj);
-          } else {
-            var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
-            newUserEvent.save()
-            .then(function(userEventInsert) {
-              UserEvents.add(userEventInsert);
-              validObj.isValid = true;
-              res.send(validObj);
+      .then(function(found) {
+        if(found) {
+          var userid = found.id;
+          // insert into userevent table the userid and eventid
+          new Userevent({user_id: userid, event_id: eventid}).fetch()
+            .then(function(found) {
+              // cannot join the same event twice
+              if(found) {
+                res.send(validObj);
+              } else {
+                var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
+                newUserEvent.save()
+                  .then(function(userEventInsert) {
+                    UserEvents.add(userEventInsert);
+                    validObj.isValid = true;
+                    res.send(validObj);
+                  });
+              }
             });
-          }
-        });
-      } else {
-        res.send(validObj);
-      }
-    });
+        } else {
+          res.send(validObj);
+        }
+      });
   },
 
   getGuestList: function(req, res) {
@@ -87,17 +91,17 @@ module.exports = {
 
     // SQL query to get all users from eventid
     knex('usereventjoins').where('event_id', eventid)
-    .then(function(collection) {
-      var guestList = [];
-      collection.forEach(function(user) {
-        guestList.push(user.user_id);
-      });
+      .then(function(collection) {
+        var guestList = [];
+        collection.forEach(function(user) {
+          guestList.push(user.user_id);
+        });
 
       knex.select('username').from('users').whereIn('id', guestList)
-      .then(function(list) {
-        console.log(list);
-        res.send(list);
-      });
+        .then(function(list) {
+          console.log(list);
+          res.send(list);
+        });
     });
   }
 };
