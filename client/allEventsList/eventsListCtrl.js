@@ -59,7 +59,7 @@ angular.module('studyMate')
       // console.log('++line59 inside getGuestList: ', list);
     })
   }
-  
+
   $scope.displayEvent();
 
 });
