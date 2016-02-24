@@ -90,7 +90,7 @@ h1 {
 }
 
 #createEvent {
-  float: right;
+  /*float: right;*/
   padding-top: 70px;
   margin: 0 auto;
 }

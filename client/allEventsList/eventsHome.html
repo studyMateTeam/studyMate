@@ -12,7 +12,9 @@
         </div>
         <div class="panel-body">
           <form class="createEvent form-horizontal" ng-submit="sendEvent()">
-            <span class="glyphicon glyphicon-text-background"></span><input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
+
+            <span class="glyphicon glyphicon-text-background"></span>
+            <input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
             <span class="glyphicon glyphicon-map-marker"></span>
             <input class="form-control" type="text" ng-model="event.place" placeholder="Place" required></input><br>
             <span class="glyphicon glyphicon-calendar"></span>
@@ -26,6 +28,7 @@
       </div>
     </div>
   </div>
+
   <div class="row-fluid">
     <div id="eventsList" class="col-sm-7" centered>
       <div ng-controller="eventsListCtrl">
