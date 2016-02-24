@@ -4,18 +4,14 @@ var User = require('../models/userModel.js');
 var Users = require('../collections/userCollection.js');
 var Userevent = require('../models/usereventModel.js');
 var UserEvents = require('../collections/usereventCollection.js');
+var knex = require('../db/schema.js').knex;
 var jwt = require('jwt-simple');
-var db = require('../db/schema.js');
 
 module.exports = {
   addEvent: function (req, res) {
     var topic = req.body.topic;
     var place = req.body.place;
-    var time = req.body.time;
-    var date = req.body.date;
     var datetime = req.body.date.slice(0,11) + req.body.time.slice(11);
-    
-    var guests = req.body.guests;
     var token = req.body.token;
 
     var eventCreateUser = jwt.decode(token, 'deadpoolsecret').username;
@@ -34,7 +30,6 @@ module.exports = {
       new User({ username: eventCreateUser }).fetch().then(function (found) {
         if (found) {
           var userid = found.id;
-          console.log(userid);
 
           // insert into userevent table the userid and eventid
           var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
@@ -49,20 +44,16 @@ module.exports = {
   },
 
   getEvents: function (req, res) {
-    Events
-    .fetch()
-    .then(function(collection) {
+    Events.fetch().then(function (collection) {
       collection = collection.toJSON();
       res.send(collection);
     });
   },
 
   eventJoin: function (req, res) {
-    console.log(req.body);
     var token = req.body.token;
     var eventid = req.body.event.id;
     var eventJoinUser = jwt.decode(token, 'deadpoolsecret').username;
-
     var validObj = {isValid: false};
 
     new User({username: eventJoinUser}).fetch().then(function (found) {
@@ -86,7 +77,31 @@ module.exports = {
       } else {
         res.send(validObj)
       }
-    })
+    });
+  },
+
+  getGuestList: function (req, res) {
+    console.log('inside eventController.getGuestList');
+    console.log(req.body);
+    // GET request that sends the eventid, and returns an object with the attending users
+    var eventid = req.body.eventid;
+
+    // SQL query to get all users from eventid
+    knex('usereventjoins').where('event_id', eventid).then(function (collection) {
+      console.log(collection);
+      var guestList = [];
+      collection.forEach(function (user) {
+        guestList.push(user.user_id);
+      });
+
+      console.log(guestList);
+
+      knex.select('username').from('users').whereIn('id', guestList).then(function (list) {
+        console.log(list);
+        res.send(list);
+      })
+
+    });
   }
 
 }

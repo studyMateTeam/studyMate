@@ -6,6 +6,7 @@
 
 
 
+
 <div class="container-fluid">
 
 <div class="row-fluid">
@@ -30,6 +31,7 @@
       </div>
     </div>
   </div>
+
   </div>
 
   <div class="row-fluid">
@@ -37,12 +39,14 @@
       <div ng-controller="eventsListCtrl">
         <h2>Choose a study event!</h2>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="event in data | orderBy:'datetime'">
+          <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
             <span class="text-left pull-left"><strong>Topic:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.topic}}</span><br>
             <span class="text-left pull-left"><strong>Place:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.place}}</span><br>
             <span class="text-left pull-left"><strong>Date:</strong></span><span "text-right">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span class="content text-left">{{event.formatted}}</span>
             <button class="btn-success pull-right" ng-click="eventJoin(event)">Join</button><br>
-            <span class="text-left pull-left"><strong>Attendees:</strong></span><span class="content">{{$scope.event.token}}</span><br>
+            <div ng-init="getGuestList(event)"></div>
+            <span class="text-left pull-left" ng-repeat="guest in allGuestLists[event.id]"><strong>Attendees:</strong></span><span class="guestList" > {{guest}} </span><br>
+
           </li>
         </ul>
       </div>
@@ -52,13 +56,5 @@
 
 
   </div>
-
-
-
-
-
-
-
-
 </div>
 </div>

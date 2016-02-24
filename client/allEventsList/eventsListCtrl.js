@@ -2,10 +2,17 @@ angular.module('studyMate')
 
 .controller('eventsListCtrl',function($scope, $window, eventsListFact, logFact){
   $scope.data = [];
+  $scope.allGuestLists = {};
 
   $scope.signout = function () {
     logFact.signout();
   }
+
+  $scope.upcomingEvents = function (obj) {
+    var date = new Date();
+    var eventDate = new Date(obj.datetime);
+    return eventDate >= date;
+  };
 
   $scope.displayEvent = function(){
     console.log('++line 6 inside eventsListCtrl');
@@ -23,7 +30,7 @@ angular.module('studyMate')
 
   $scope.eventJoin = function(event) {
     console.log('++line 20 in eventJoin in eventsListCtrl');
-    
+
     var token = $window.localStorage.getItem('com.studymate');
 
     var eventJoinData = {
@@ -39,9 +46,19 @@ angular.module('studyMate')
         console.log('Event join failed');
       }
     })
-
   };
 
+  $scope.getGuestList = function (event) {
+    var list = [];
+    eventsListFact.getGuestList(event.id).then(function (data) {
+      data.forEach(function (item) {
+        list.push(item.username);
+      })
+      $scope.allGuestLists[event.id] = list;
+      // console.log('++line59 inside getGuestList: ', list);
+    })
+  }
+  
   $scope.displayEvent();
 
 });

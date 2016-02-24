@@ -19,15 +19,28 @@ angular.module('studyMate')
       method: 'POST',
       url: 'api/events/eventJoin',
       data: joinData
-    })
-    .then(function (resp) {
+    }).then(function (resp) {
       console.log(resp);
       return resp.data;
+    })
+  };
+
+  var getGuestList = function (eventid) {
+    var data = {eventid: eventid};
+    return $http({
+      method: 'POST',
+      url: 'api/events/getGuestList',
+      data: data
+    }).then(function success (response) {
+      return response.data;
+    }, function error (response) {
+      console.log('++line 36 inside eventListFact Error: ', response);
     })
   }
 
   return {
     getEvents: getEvents,
-    eventJoin: eventJoin
+    eventJoin: eventJoin,
+    getGuestList: getGuestList
   };
 });
