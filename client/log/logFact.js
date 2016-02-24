@@ -1,4 +1,5 @@
 angular.module('studyMate')
+
 .factory('logFact', function ($http, $location, $window) {
 
   var signin = function (user) {
@@ -8,7 +9,6 @@ angular.module('studyMate')
       data: user
     })
     .then(function (resp) {
-      // console.log(resp);
       return resp.data;
     });
   };

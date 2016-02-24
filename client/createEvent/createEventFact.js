@@ -1,13 +1,6 @@
 angular.module('studyMate')
 
-.factory('createEventFact', function($http){
-  // Take information from the createventHome view and send to dB
-  //  Post request
-  //  use $http request
-  //  if we end up doing google maps than add it here
-
-
-
+.factory('createEventFact', function($http) {
   var addEvent = function(eventDetails) {
     return $http({
       method: 'POST',
