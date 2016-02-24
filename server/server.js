@@ -16,6 +16,4 @@ var server = app.listen(port, function() {
   console.log('http://localhost:' + port);
 });
 
-
->>>>>>> master
 module.exports = app;
