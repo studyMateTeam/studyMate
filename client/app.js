@@ -30,25 +30,22 @@ angular.module('studyMate', ['ui.router'])
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }
-      // object.headers['Allow-Control-Allow-Origin'] = '*';
-      return object;
-    }
-  };
-  return attach;
+return object;
+}
+};
+return attach;
 })
 
 .run(function ($rootScope, $state, $location, logFact) {
   $rootScope.url = "http://localhost:8000";
   $rootScope.$on('$stateChangeStart', function (e, toState) {
-    //if authenticate prop is true but token doesnt exist
-    if (toState.authenticate && !logFact.isAuth()) {
-      e.preventDefault();
-      $state.go('signin');
-    }
-    //if authenticate prop is false but token exists
-    if(!toState.authenticate && logFact.isAuth()) {
-      e.preventDefault();
-      $state.go('eventsHome');
-    }
-  });
+if (toState.authenticate && !logFact.isAuth()) {
+  e.preventDefault();
+  $state.go('signin');
+}
+if(!toState.authenticate && logFact.isAuth()) {
+  e.preventDefault();
+  $state.go('eventsHome');
+}
+});
 });

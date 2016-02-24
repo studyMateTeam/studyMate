@@ -1,30 +1,30 @@
 angular.module('studyMate')
 
-.factory('eventsListFact', function($http){
+.factory('eventsListFact', function($http) {
   var getEvents = function() {
     return $http({
       method: 'GET',
       url: '/api/events/getEvents',
     }).then( function successs(response) {
+      console.log(response);
       return response.data;
     }, function error(response) {
-      console.log('++line 12 inside eventListFact Error: ',response);
+      console.log(response);
     });
   };
 
   var eventJoin = function(joinData) {
-    console.log('++line 17 inside eventJoin in eventsListFact');
     return $http({
       method: 'POST',
       url: 'api/events/eventJoin',
       data: joinData
-    }).then(function (resp) {
+    }).then(function(resp) {
       console.log(resp);
       return resp.data;
-    })
+    });
   };
 
-  var getGuestList = function (eventid) {
+  var getGuestList = function(eventid) {
     var data = {eventid: eventid};
     return $http({
       method: 'POST',
@@ -32,10 +32,10 @@ angular.module('studyMate')
       data: data
     }).then(function success (response) {
       return response.data;
-    }, function error (response) {
-      console.log('++line 36 inside eventListFact Error: ', response);
-    })
-  }
+    }, function error(response) {
+      console.log(response);
+    });
+  };
 
   return {
     getEvents: getEvents,
