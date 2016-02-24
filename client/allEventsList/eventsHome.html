@@ -1,25 +1,60 @@
 
-<div class="allEvents" ng-controller="eventsListCtrl as elc">
+<!-- NAV BAR -->
+<ul class="navbar" ng-controller="eventsListCtrl">
+  <li><a id="active" href="#/eventsHome">Home</a></li>
+  <li ng-click="signout()"><a href="#/signin">Logout</a></li>
+</ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div id="createEvent" class="col-md-5 col-sm-12 col-xs-12" centered>
+      <div class="panel panel-primary" ng-controller="createEventCtrl">
+        <div class="panel-heading">
+          Post an Event!
+        </div>
+        <div class="panel-body">
+          <form class="createEvent form-horizontal" ng-submit="sendEvent()">
 
-<!-- ///////////create event view/////////// -->
-  <div class="createEvent" ng-controller="createEventCtrl">
-    <form ng-submit="sendEvent()">
-      <label>Topic: <input type="text" ng-model="event.topic"></input></label><br>
-      <label>Place:<input type="text" ng-model="event.place"></input></label><br>
-      <label>Date:<input type="text" ng-model="event.date"></input></label><br>
-      <label>Time:<input type="text" ng-model="event.time"></input></label><br>
-      <button>Add</button>
-    </form>
+            <span class="glyphicon glyphicon-text-background"></span>
+            <input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
+            <span class="glyphicon glyphicon-map-marker"></span>
+            <input class="form-control" type="text" ng-model="event.place" placeholder="Place" required></input><br>
+            <span class="glyphicon glyphicon-calendar"></span>
+            <input class="form-control dropdown" type="date" ng-model="event.date" required min="{{currentDate | date: 'yyyy-MM-dd'}}"></input><br>
+            <span class="glyphicon glyphicon-time"></span>
+            <input class="form-control" type="time" ng-model="event.time" required><br>
+
+            <button class="btn btn-primary">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
-<!-- /////////all event view////////////// -->
-  <div class="indivEvent" ng-repeat="event in elc.data">
-    Topic:<div class="topic">{{event.topic}}</div><br>
-    Place:<div class="place">{{event.place}}</div><br>
-    Date:<div class="date">{{event.date}}</div><br>
-    Time:<div class="time">{{event.time}}</div><br>
-    Guests:<div class="time">{{event.guests}}</div><br>
-  </div>
+<div class="clearfix visible-sm"></div>
 
-
+  <!-- <div class="row-fluid"> -->
+    <div id="eventsList" class="col-md-7 col-sm-12 col-xs-12" centered>
+      <div ng-controller="eventsListCtrl">
+        <h2>Choose a study event!</h2>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
+            <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
+            <span class="col-sm-4 content text-left">{{event.topic}}</span>
+            <br>
+            <span class="col-sm-2 text-left pull-left"><strong>Place:</strong></span>
+            <span class="col-sm-4 content text-left">{{event.place}}</span>
+            <br>
+            <span class="col-sm-2 text-left pull-left"><strong>Date:</strong></span>
+            <span class="col-sm-4 content text-left">{{event.formatted}}</span>
+            <button class="btn btn-success pull-right" ng-click="eventJoin(event)">Join</button>
+            <br>
+            <div ng-init="getGuestList(event)"></div>
+            <span class="col-sm-2 text-left pull-left"><strong>Attendees:</strong></span>
+            <span class="col-sm-1 guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span>
+            <br>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <!-- </div> -->
 </div>

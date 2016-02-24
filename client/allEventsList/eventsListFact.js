@@ -1,6 +1,6 @@
 angular.module('studyMate')
 
-.factory('eventsListFact', function($http){
+.factory('eventsListFact', function($http) {
   var getEvents = function() {
     return $http({
       method: 'GET',
@@ -12,7 +12,34 @@ angular.module('studyMate')
       console.log(response);
     });
   };
+
+  var eventJoin = function(joinData) {
+    return $http({
+      method: 'POST',
+      url: 'api/events/eventJoin',
+      data: joinData
+    }).then(function(resp) {
+      console.log(resp);
+      return resp.data;
+    });
+  };
+
+  var getGuestList = function(eventid) {
+    var data = {eventid: eventid};
+    return $http({
+      method: 'POST',
+      url: 'api/events/getGuestList',
+      data: data
+    }).then(function success (response) {
+      return response.data;
+    }, function error(response) {
+      console.log(response);
+    });
+  };
+
   return {
-    getEvents: getEvents
+    getEvents: getEvents,
+    eventJoin: eventJoin,
+    getGuestList: getGuestList
   };
 });
