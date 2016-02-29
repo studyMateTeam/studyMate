@@ -44,7 +44,6 @@ angular.module('studyMate')
           console.log('Event join failed');
         }
       });
-      $state.reload();
   };
 
   $scope.getGuestList = function(event) {
@@ -59,5 +58,4 @@ angular.module('studyMate')
   }
 
   $scope.displayEvent();
-
 });
