@@ -8,6 +8,12 @@ h4 {
   font-family: arial;
 }
 
+.navbar {
+  position: fixed;
+  display: block;
+  z-index: 2;
+}
+
 
 .jumbotron {
   background: url('');
