@@ -58,5 +58,4 @@ angular.module('studyMate')
   }
 
   $scope.displayEvent();
-
 });
