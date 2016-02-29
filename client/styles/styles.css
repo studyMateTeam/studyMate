@@ -8,8 +8,17 @@ h4 {
   font-family: arial;
 }
 
+.navbar {
+  position: fixed;
+  display: block;
+  z-index: 2;
+}
+
+
 .jumbotron {
-  background-image: url('../');
+  background: url('');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   font-family: 'Pacifico', cursive;
 }
 
