@@ -14,12 +14,21 @@ h4 {
   z-index: 2;
 }
 
+h1 {
+
+}
+
 
 .jumbotron {
-  background: url('');
-  background-size: 100% 100%;
+  background: url('../assets/bookBanner.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: 50% 50%;
   font-family: 'Pacifico', cursive;
+  color: white;
+  text-shadow: 0 0 30px #000; /* horizontal-offset vertical-offset 'blur' colour */
+ -moz-text-shadow: 0 0 30px #000;
+ -webkit-text-shadow: 0 0 30px #000;
 }
 
 .navbar {
