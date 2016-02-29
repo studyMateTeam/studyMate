@@ -1,13 +1,28 @@
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host     : 'mysqlcluster8.registeredsite.com',
-    user     : 'studymateadmin',
-    password : '!Qaz2wsx3edc',
-    database : 'studymate',
-    charset  : 'utf8'
-  }
-});
+// get db variables
+if (process.env.db_host) {
+  var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+      host     : process.env.db_host,
+      user     : process.env.db_user,
+      password : process.env.db_password,
+      database : process.env.db_name,
+      charset  : 'utf8'
+    }
+  });
+} else {
+  var config = require('./config/config.js');
+  var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+      host     : config.db_host,
+      user     : config.db_user,
+      password : config.db_password,
+      database : config.db_name,
+      charset  : 'utf8'
+    }
+  });
+}
 
 var Bookshelf = require('bookshelf')(knex);
 var db = Bookshelf;

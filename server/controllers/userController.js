@@ -4,7 +4,11 @@ var jwt = require('jwt-simple');
 var bcrypt = require('bcrypt-nodejs');
 
 // token secret
-var secret = 'deadpoolsecret';
+if (process.env.secret) {
+  var secret = process.env.secret;
+} else {
+  var secret = require('../db/config/config.js').secret;
+}
 
 module.exports = {
 
