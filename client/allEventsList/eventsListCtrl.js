@@ -19,7 +19,7 @@ angular.module('studyMate')
     eventsListFact.getEvents()
       .then(function(data) {
         data.forEach(function(value) {
-          value.formatted = moment(value.datetime, moment.ISO_8601).utcOffset(480).format('MMM Do YYYY, h:mm A');
+          value.formatted = moment(value.datetime, moment.ISO_8601).tz('America/Los_Angeles').format('ha z').format('MMM Do YYYY, h:mm A');
         });
         $scope.data = data;
       }).catch(function(err) {
