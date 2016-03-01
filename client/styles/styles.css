@@ -14,11 +14,6 @@ h4 {
   z-index: 2;
 }
 
-h1 {
-
-}
-
-
 .jumbotron {
   background: url('../assets/bookBanner.jpg');
   background-size: cover;
@@ -26,7 +21,7 @@ h1 {
   background-position: 50% 50%;
   font-family: 'Pacifico', cursive;
   color: white;
-  text-shadow: 0 0 30px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  text-shadow: 0 0 30px #000;
  -moz-text-shadow: 0 0 30px #000;
  -webkit-text-shadow: 0 0 30px #000;
 }
@@ -101,13 +96,11 @@ h1 {
 #eventsList {
   float: left;
   padding: 10px;
-  /*margin: 0 auto;*/
 }
 
 #createEvent {
   float: right;
   padding-top: 70px;
-  /*margin: 0 auto;*/
 }
 
 .content {
