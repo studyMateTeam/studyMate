@@ -15,4 +15,5 @@ module.exports = function(app, express) {
   app.post('/api/events/addEvent', jsonParser, eventController.addEvent);
   app.post('/api/events/eventJoin', jsonParser, eventController.eventJoin);
   app.post('/api/events/getGuestList', jsonParser, eventController.getGuestList);
+  app.post('/api/events/checkJoinStatus', jsonParser, eventController.checkJoinStatus);
 };

@@ -37,9 +37,21 @@ angular.module('studyMate')
     });
   };
 
+  var checkJoinStatus = function(event){
+    return $http({
+      method: 'POST',
+      url: 'api/events/checkJoinStatus',
+      data: joinData
+    }).then(function(resp) {
+      console.log(resp);
+      return resp.data;
+    });
+  };
+
   return {
     getEvents: getEvents,
     eventJoin: eventJoin,
-    getGuestList: getGuestList
+    getGuestList: getGuestList,
+    checkJoinStatus: checkJoinStatus
   };
 });
