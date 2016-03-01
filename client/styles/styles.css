@@ -4,10 +4,31 @@ body {
   background-color: #eee;
 }
 
+h4 {
+  font-family: arial;
+}
+
+.navbar {
+  position: fixed;
+  display: block;
+  z-index: 2;
+}
+
+h1 {
+
+}
+
 
 .jumbotron {
-  background-image: url('../');
+  background: url('../assets/bookBanner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   font-family: 'Pacifico', cursive;
+  color: white;
+  text-shadow: 0 0 30px #000; /* horizontal-offset vertical-offset 'blur' colour */
+ -moz-text-shadow: 0 0 30px #000;
+ -webkit-text-shadow: 0 0 30px #000;
 }
 
 .navbar {
@@ -77,12 +98,6 @@ body {
   border-top-right-radius: 0;
 }
 
-
-h1 {
-  font-family: 'Norican', cursive;
-}
-
-
 #eventsList {
   float: left;
   padding: 10px;
@@ -97,4 +112,12 @@ h1 {
 
 .content {
   text-align: center;
+}
+
+.instructions{
+  margin-top: 40px;
+}
+
+.arial {
+  font-family: arial;
 }

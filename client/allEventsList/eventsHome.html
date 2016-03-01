@@ -39,14 +39,14 @@
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
             <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
-            <span class="col-sm-4 content text-left">{{event.topic}}</span>
+            <span class="col-sm-4">{{event.topic}}</span>
             <br>
             <span class="col-sm-2 text-left pull-left"><strong>Place:</strong></span>
-            <span class="col-sm-4 content text-left">{{event.place}}</span>
+            <span class="col-sm-4">{{event.place}}</span>
+            <button class="btn btn-success pull-right" ng-click="eventJoin(event)">Join</button>
             <br>
             <span class="col-sm-2 text-left pull-left"><strong>Date:</strong></span>
-            <span class="col-sm-4 content text-left">{{event.formatted}}</span>
-            <button class="btn btn-success pull-right" ng-click="eventJoin(event)">Join</button>
+            <span class="col-sm-4">{{event.formatted}}</span>
             <br>
             <div ng-init="getGuestList(event)"></div>
             <span class="col-sm-2 text-left pull-left"><strong>Attendees:</strong></span>
