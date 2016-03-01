@@ -18,7 +18,7 @@ angular.module('studyMate')
   $scope.displayEvent = function() {
     eventsListFact.getEvents()
       .then(function(data) {
-        data.forEach(function(value) {z
+        data.forEach(function(value) {
           // moment.tz.add('America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0');
           value.formatted = moment(value.datetime, moment.ISO_8601).format('MMM D, YYYY, h:mm A');
         });
