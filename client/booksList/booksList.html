@@ -1,7 +1,22 @@
 <div ng-controller="booksListCtrl" ng-init="bookSearch()">
-<h1>Books List</h1>
-<ul ng-repeat="book in booksList">
-  <li>{{ book.volumeInfo.title }}</li>
-</ul>
-<button ui-sref="eventsHome" class="btn btn-default">Back to Events</button>
+  <h1>Books List</h1>
+  <ul ng-repeat="book in booksList">
+    <li>{{ book.volumeInfo.title }}</li>
+    <li>{{ book.volumeInfo.authors[0] }}</li>
+    <li>{{ book.volumeInfo.categories[0] }}</li>
+    <li>
+      <!-- Added expand to show the full book description. Every book has its own scope, so on click it will toggle to false or true, which triggers the respective ng-shows. -->
+      <div ng-show="!show" ng-model="show" ng-init="show=false">
+        <p>{{ book.volumeInfo.description.slice(0, 200) }}
+        <a href="" ng-click="show=true">... Read more</a></p>
+      </div>
+
+      <div ng-show="show" ng-model="show">
+        <p>{{ book.volumeInfo.description }}
+        <a href="" ng-click="show=false">- Collapse</a></p>
+      </div>
+    </li>
+    <li><img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" /></li>
+  </ul>
+  <button ui-sref="eventsHome" class="btn btn-default">Back to Events</button>
 </div>
