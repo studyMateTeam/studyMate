@@ -1,9 +1,18 @@
 angular.module('studyMate')
 
 
-.controller('eventsListCtrl', function($scope, $window, $state, eventsListFact, logFact) {
+.controller('eventsListCtrl', function($scope, $window, $state, eventsListFact, logFact, booksListFact) {
   $scope.data = [];
   $scope.allGuestLists = {};
+  $scope.booksShowing = false;
+
+  $scope.toggleBooksShowing = function (){
+    if($scope.booksShowing === true){
+      $scope.booksShowing = false;
+    } else {
+    $scope.booksShowing = true;
+    }
+  }
 
   $scope.signout = function() {
     logFact.signout();
@@ -56,15 +65,6 @@ angular.module('studyMate')
         });
         $scope.allGuestLists[event.id] = list;
       })
-  };
-
-  $scope.bookSearch = function(topic){
-    var bookTopic = topic;
-
-    eventsListFact.bookSearch(bookTopic)
-    .then(function(data){
-      console.log(data);
-    });
   };
 
   $scope.displayEvent();

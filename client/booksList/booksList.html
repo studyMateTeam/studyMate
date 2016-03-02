@@ -1,0 +1,7 @@
+<div ng-controller="booksListCtrl" ng-init="bookSearch()">
+<h1>Books List</h1>
+<ul ng-repeat="book in booksList">
+  <li>{{ book.volumeInfo.title }}</li>
+</ul>
+<button ui-sref="eventsHome" class="btn btn-default">Back to Events</button>
+</div>
