@@ -28,20 +28,21 @@ angular.module('studyMate')
       });
   };
 
-  $scope.eventJoin = function(event) {
+  $scope.eventAttendanceToggle = function(event) {
 
     var token = $window.localStorage.getItem('com.studymate');
 
-    var eventJoinData = {
+    var eventData = {
       token: token,
       event: event
     };
 
-    eventsListFact.eventJoin(eventJoinData)
+    eventsListFact.eventToggle(eventData)
       .then(function(response) {
         if (response.isValid) {
           $scope.getGuestList(event);
         } else {
+          console.log(response);
           console.log('Event join failed');
         }
       });
@@ -49,6 +50,7 @@ angular.module('studyMate')
 
   $scope.getGuestList = function(event) {
     var list = [];
+    list = [];
     eventsListFact.getGuestList(event.id)
       .then(function(data) {
         data.forEach(function(item) {
