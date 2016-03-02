@@ -26,4 +26,7 @@ angular.module('studyMate')
     $window.location.href = '/#/eventsHome';
   };
 
+
+
+
 });

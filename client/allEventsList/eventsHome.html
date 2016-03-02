@@ -1,8 +1,8 @@
 
 <!-- NAV BAR -->
 <ul class="navbar" ng-controller="eventsListCtrl">
-  <li><a id="active" href="#/eventsHome">Home</a></li>
-  <li ng-click="signout()"><a href="#/signin">Logout</a></li>
+  <li><a class="logo" id="active" href="#/eventsHome">StudyMate</a></li>
+  <li class="logout pull-right"ng-click="signout()"><a href="#/signin" >logout</a></li>
 </ul>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -23,7 +23,7 @@
             <span class="glyphicon glyphicon-time"></span>
             <input class="form-control" type="time" ng-model="event.time" required><br>
 
-            <button class="btn btn-primary">Add</button>
+            <button class="btn btn-primary addRemoveButton">Add</button>
           </form>
         </div>
       </div>
@@ -35,7 +35,6 @@
   <!-- <div class="row-fluid"> -->
     <div id="eventsList" class="col-md-7 col-sm-12 col-xs-12" centered>
       <div ng-controller="eventsListCtrl">
-        <h2>Choose a study event!</h2>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
             <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
