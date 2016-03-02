@@ -13,6 +13,6 @@ module.exports = function(app, express) {
   app.post('/api/users/signup', jsonParser, userController.signup);
   app.get('/api/events/getEvents', jsonParser, eventController.getEvents);
   app.post('/api/events/addEvent', jsonParser, eventController.addEvent);
-  app.post('/api/events/eventJoin', jsonParser, eventController.eventJoin);
+  app.post('/api/events/eventAttendanceToggle', jsonParser, eventController.eventToggle);
   app.post('/api/events/getGuestList', jsonParser, eventController.getGuestList);
 };
