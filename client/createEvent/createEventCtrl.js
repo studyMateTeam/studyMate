@@ -26,6 +26,14 @@ angular.module('studyMate')
     $window.location.href = '/#/eventsHome';
   };
 
+  $scope.showHostEventDropdown = function(){
+    var form = '';
+
+
+  };
+
+
+  
 
 
 

@@ -5,9 +5,13 @@
   <li class="logout pull-right"ng-click="signout()"><a href="#/signin" >logout</a></li>
 </ul>
 <div class="container-fluid">
-  <div class="row-fluid">
+
+
+  <div class="row-fluid" ng-controller="createEventCtrl">
+    <button id="createNew" class="btn btn-success" ng-click="showHostEventDropdown()">Host a New Event</button>
+
     <div id="createEvent" class="col-md-5 col-sm-12 col-xs-12" centered>
-      <div class="panel panel-primary" ng-controller="createEventCtrl">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           Post an Event!
         </div>
@@ -28,6 +32,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
 <div class="clearfix visible-sm"></div>
@@ -42,7 +47,9 @@
             <br>
             <span class="col-sm-2 text-left pull-left"><strong>Place:</strong></span>
             <span class="col-sm-4">{{event.place}}</span>
-            <button class="btn btn-success pull-right" ng-click="eventAttendanceToggle(event)">Join/Leave</button>
+
+            <button class="btn btn-success pull-right joinLeaveButton" ng-click="eventAttendanceToggle(event)">Join/Leave</button>
+
             <br>
             <span class="col-sm-2 text-left pull-left"><strong>Date:</strong></span>
             <span class="col-sm-4">{{event.formatted}}</span>
