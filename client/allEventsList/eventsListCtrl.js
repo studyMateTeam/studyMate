@@ -56,7 +56,16 @@ angular.module('studyMate')
         });
         $scope.allGuestLists[event.id] = list;
       })
-  }
+  };
+
+  $scope.bookSearch = function(topic){
+    var bookTopic = topic;
+
+    eventsListFact.bookSearch(bookTopic)
+    .then(function(data){
+      console.log(data);
+    });
+  };
 
   $scope.displayEvent();
 });
