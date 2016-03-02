@@ -1,9 +1,18 @@
 angular.module('studyMate')
 
 
-.controller('eventsListCtrl', function($scope, $window, $state, eventsListFact, logFact) {
+.controller('eventsListCtrl', function($scope, $window, $state, eventsListFact, logFact, booksListFact) {
   $scope.data = [];
   $scope.allGuestLists = {};
+  $scope.booksShowing = false;
+
+  $scope.toggleBooksShowing = function (){
+    if($scope.booksShowing === true){
+      $scope.booksShowing = false;
+    } else {
+    $scope.booksShowing = true;
+    }
+  }
 
   $scope.signout = function() {
     logFact.signout();
@@ -39,7 +48,7 @@ angular.module('studyMate')
     eventsListFact.checkJoinStatus(eventJoinData)
     .then(function(response) {
       if (response.isValid) {
-        
+
       } else {
 
       }
@@ -68,12 +77,12 @@ angular.module('studyMate')
   $scope.getGuestList = function(event) {
     var list = [];
     eventsListFact.getGuestList(event.id)
-    .then(function(data) {
-      data.forEach(function(item) {
-        list.push(item.username);
+      .then(function(data) {
+        data.forEach(function(item) {
+          list.push(item.username);
+        });
+        $scope.allGuestLists[event.id] = list;
       });
-      $scope.allGuestLists[event.id] = list;
-    });
   };
 
   $scope.displayEvent();

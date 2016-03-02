@@ -121,3 +121,8 @@ h1 {
 .arial {
   font-family: arial;
 }
+
+div .bookInfoHeader{
+font-weight: bold;
+
+}

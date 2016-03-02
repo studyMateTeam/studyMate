@@ -53,33 +53,6 @@ module.exports = {
       });
   },
 
-  checkJoinStatus: function(req, res) {
-    var token = req.body.token;
-    var eventid = req.body.event.id;
-    var eventJoinUser = jwt.decode(token, 'deadpoolsecret').username;
-    var validObj = {isValid: false};
-
-    new User({username: eventJoinUser}).fetch()
-      .then(function(found) {
-        if(found) {
-          var userid = found.id;
-          // insert into userevent table the userid and eventid
-          new Userevent({user_id: userid, event_id: eventid}).fetch()
-            .then(function(found) {
-              // cannot join the same event twice
-              if(found) {
-                res.send(validObj);
-              } else {
-                validObj.isValid = true;
-                res.send(validObj);
-              }
-            });
-        } else {
-          res.send(validObj);
-        }
-      });
-  },
-
   eventJoin: function(req, res) {
     var token = req.body.token;
     var eventid = req.body.event.id;
@@ -95,7 +68,13 @@ module.exports = {
             .then(function(found) {
               // cannot join the same event twice
               if(found) {
-                res.send(validObj);
+                knex.table('usereventjoins')
+                .where({user_id: userid, event_id: eventid})
+                .del()
+                .then(function(model){
+                  validObj.isValid = true;
+                  res.send(validObj);
+                });
               } else {
                 var newUserEvent = new Userevent({user_id: userid, event_id: eventid});
                 newUserEvent.save()
