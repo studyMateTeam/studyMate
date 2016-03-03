@@ -5,18 +5,20 @@
   <meta charset="UTF-8">
   <title>Studymate</title>
   <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 </head>
 <body class="hello" ng-app="studyMate">
-  <div class="container">
+  <!-- <div class="container">
     <div class="jumbotron">
-      <!-- <img id="bookbackground" src="assets/book-background.jpg" alt="BOOKS"> -->
       <h1 class="text-center">StudyMate</h1>
       <br>
       <center><h4><span class="arial">connect with study partners to get motivated and accomplish your goals</span></h4></center>
     </div>
-  </div>
+  </div> -->
   <div ui-view></div>
 
   <script src="lib/angular/angular.min.js"></script>
@@ -32,5 +34,7 @@
   <script src="log/logFact.js"></script>
   <script src="createEvent/createEventCtrl.js"></script>
   <script src="createEvent/createEventFact.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </body>
 </html>

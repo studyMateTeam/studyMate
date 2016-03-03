@@ -12,11 +12,11 @@ angular.module('studyMate')
     });
   };
 
-  var eventJoin = function(joinData) {
+  var eventToggle = function(eventData) {
     return $http({
       method: 'POST',
-      url: 'api/events/eventJoin',
-      data: joinData
+      url: 'api/events/eventAttendanceToggle',
+      data: eventData
     }).then(function(resp) {
       return resp.data;
     });

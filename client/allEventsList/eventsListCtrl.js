@@ -10,7 +10,7 @@ angular.module('studyMate')
     if($scope.booksShowing === true){
       $scope.booksShowing = false;
     } else {
-    $scope.booksShowing = true;
+      $scope.booksShowing = true;
     }
   }
 
@@ -55,11 +55,11 @@ angular.module('studyMate')
     });
   };
 
-  $scope.eventJoin = function(event) {
+  $scope.eventAttendanceToggle = function(event) {
 
     var token = $window.localStorage.getItem('com.studymate');
 
-    var eventJoinData = {
+    var eventData = {
       token: token,
       event: event
     };
@@ -76,13 +76,14 @@ angular.module('studyMate')
 
   $scope.getGuestList = function(event) {
     var list = [];
+    list = [];
     eventsListFact.getGuestList(event.id)
-      .then(function(data) {
-        data.forEach(function(item) {
-          list.push(item.username);
-        });
-        $scope.allGuestLists[event.id] = list;
+    .then(function(data) {
+      data.forEach(function(item) {
+        list.push(item.username);
       });
+      $scope.allGuestLists[event.id] = list;
+    });
   };
 
   $scope.displayEvent();
