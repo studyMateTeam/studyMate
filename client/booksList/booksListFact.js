@@ -9,7 +9,6 @@ var bookSearch = function(topic) {
     method: 'GET',
     url: 'https://www.googleapis.com/books/v1/volumes?q=' + topic,
   }).then( function success(response) {
-    console.log(response.data.items);
     return response.data.items;
   }, function error(response) {
     console.log(response);
