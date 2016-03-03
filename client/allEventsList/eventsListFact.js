@@ -22,19 +22,6 @@ angular.module('studyMate')
     });
   };
 
-  var bookSearch = function(topic) {
-    return $http({
-      method: 'GET',
-      url: 'https://www.googleapis.com/books/v1/volumes?q=' + topic,
-    }).then(function success(response) {
-      var books = response.data.items;
-      return books;
-    }, function error(response) {
-      console.log(response);
-    });
-  };
-
-
   var getGuestList = function(eventid) {
     var data = {eventid: eventid};
     return $http({
@@ -48,13 +35,24 @@ angular.module('studyMate')
     });
   };
 
-  var checkJoinStatus = function(event){
+  var bookSearch = function(topic) {
+    return $http({
+      method: 'GET',
+      url: 'https://www.googleapis.com/books/v1/volumes?q=' + topic,
+    }).then(function success(response) {
+      var books = response.data.items;
+      return books;
+    }, function error(response) {
+      console.log(response);
+    });
+  };
+
+  var eventJoin = function(joinData) {
     return $http({
       method: 'POST',
-      url: 'api/events/checkJoinStatus',
+      url: 'api/events/eventJoin',
       data: joinData
     }).then(function(resp) {
-      console.log(resp);
       return resp.data;
     });
   };
