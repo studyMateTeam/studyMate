@@ -6,7 +6,6 @@ angular.module('studyMate')
       method: 'GET',
       url: '/api/events/getEvents',
     }).then( function successs(response) {
-      console.log(response);
       return response.data;
     }, function error(response) {
       console.log(response);
@@ -19,7 +18,6 @@ angular.module('studyMate')
       url: 'api/events/eventJoin',
       data: joinData
     }).then(function(resp) {
-      console.log(resp);
       return resp.data;
     });
   };
@@ -30,7 +28,6 @@ angular.module('studyMate')
       url: 'https://www.googleapis.com/books/v1/volumes?q=' + topic,
     }).then(function success(response) {
       var books = response.data.items;
-      console.log(books);
       return books;
     }, function error(response) {
       console.log(response);

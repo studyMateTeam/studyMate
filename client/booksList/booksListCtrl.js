@@ -9,6 +9,7 @@ angular.module('studyMate')
     booksListFact.bookSearch($scope.bookTopic)
     .then(function(books){
       $scope.booksList = books;
+      console.log($scope.booksList);
     });
   };
 
