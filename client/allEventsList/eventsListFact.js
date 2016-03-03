@@ -6,7 +6,6 @@ angular.module('studyMate')
       method: 'GET',
       url: '/api/events/getEvents',
     }).then( function successs(response) {
-      console.log(response);
       return response.data;
     }, function error(response) {
       console.log(response);
@@ -19,7 +18,6 @@ angular.module('studyMate')
       url: 'api/events/eventAttendanceToggle',
       data: eventData
     }).then(function(resp) {
-      console.log(resp);
       return resp.data;
     });
   };
@@ -37,9 +35,32 @@ angular.module('studyMate')
     });
   };
 
+  var bookSearch = function(topic) {
+    return $http({
+      method: 'GET',
+      url: 'https://www.googleapis.com/books/v1/volumes?q=' + topic,
+    }).then(function success(response) {
+      var books = response.data.items;
+      return books;
+    }, function error(response) {
+      console.log(response);
+    });
+  };
+
+  var eventJoin = function(joinData) {
+    return $http({
+      method: 'POST',
+      url: 'api/events/eventJoin',
+      data: joinData
+    }).then(function(resp) {
+      return resp.data;
+    });
+  };
+
   return {
     getEvents: getEvents,
-    eventToggle: eventToggle,
-    getGuestList: getGuestList
+    eventJoin: eventJoin,
+    getGuestList: getGuestList,
+    bookSearch: bookSearch
   };
 });

@@ -1,0 +1,37 @@
+<div ng-controller="booksListCtrl" ng-init="bookSearch()">
+  <h1>Books List</h1>
+
+  <!-- filter buttons -->
+  <!-- <button type="button" name="paidBooks" ng-click="priceFilter = {book.accessInfo.pdf.isAvailable === "true"}">Paid</button>
+  <button type="button" name="freeBooks" ng-click=priceFilter = "{book.accessInfo.pdf.isAvailable === "false"}">Free</button> -->
+  <ul ng-repeat="book in booksList | filter: priceFilter">
+
+    <!-- Book Layout in Books page -->
+    <div class="container-fluid book">
+      <div class="row bookRow">
+        <div class="col-sm-2 bookImage">
+          <span><img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" /></span>
+        </div>
+        <div class="col-md-12 bookInfo">
+          <span id="bookInfoAuthor"><span class="bookInfoHeader">Title: {{ book.volumeInfo.title }}</span><br>
+          <span id="bookInfoAuthor"><span class="bookInfoHeader">Author:</span> {{ book.volumeInfo.authors[0] }}</span><br>
+          <span id="bookInfoCategory"><span class="bookInfoHeader">Category:</span> {{ book.volumeInfo.categories[0] }}</span><br>
+          <span id="bookInfoDescription">
+            <span class="bookInfoHeader">Description:</span>
+            <!-- Added expand to show the full book description. Every book has its own scope, so on click it will toggle to false or true, which triggers the respective ng-shows. -->
+            <div ng-show="!show" ng-model="show" ng-init="show=false">
+              <p>{{ book.volumeInfo.description.slice(0, 200) }}
+                <a href="" ng-click="show=true">... Read more</a></p>
+            </div>
+
+            <div ng-show="show" ng-model="show">
+              <p>{{ book.volumeInfo.description }}
+                <a href="" ng-click="show=false">- Collapse</a></p>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </ul>
+  <button ui-sref="eventsHome" class="btn btn-default">Back to Events</button>
+</div>

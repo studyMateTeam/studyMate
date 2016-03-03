@@ -50,7 +50,7 @@
         <ul class="list-group eventsList">
           <li class="list-group-item eventsListItem" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
             <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
-            <span class="col-sm-4">{{event.topic}}</span>
+            <a ui-sref="booksList({ bookTopic: event.topic })" class="col-sm-4">{{event.topic}}</a>
             <br>
             <span class="col-sm-2 text-left pull-left"><strong>Place:</strong></span>
             <span class="col-sm-4">{{event.place}}</span>

@@ -285,3 +285,8 @@ form {
     font-size: 5em;
   }
 }
+
+/*books list page styles*/
+div .bookInfoHeader{
+font-weight: bold;
+}
