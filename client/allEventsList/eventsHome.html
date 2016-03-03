@@ -4,44 +4,51 @@
   <li><a class="logo" id="active" href="#/eventsHome">StudyMate</a></li>
   <li class="logout pull-right"ng-click="signout()"><a href="#/signin" >logout</a></li>
 </ul>
-<div class="container-fluid">
 
 
-  <div class="row-fluid" ng-controller="createEventCtrl">
-    <button id="createNew" class="btn btn-success" ng-click="showHostEventDropdown()">Host a New Event</button>
-
-    <div id="createEvent" class="col-md-5 col-sm-12 col-xs-12" centered>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Post an Event!
-        </div>
-        <div class="panel-body">
-          <form class="createEvent form-horizontal" ng-submit="sendEvent()">
-
-            <span class="glyphicon glyphicon-text-background"></span>
-            <input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
-            <span class="glyphicon glyphicon-map-marker"></span>
-            <input class="form-control" type="text" ng-model="event.place" placeholder="Place" required></input><br>
-            <span class="glyphicon glyphicon-calendar"></span>
-            <input class="form-control dropdown" type="date" ng-model="event.date" required min="{{currentDate | date: 'yyyy-MM-dd'}}"></input><br>
-            <span class="glyphicon glyphicon-time"></span>
-            <input class="form-control" type="time" ng-model="event.time" required><br>
-
-            <button class="btn btn-primary addRemoveButton">Add</button>
-          </form>
-        </div>
-      </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myEvents" ng-controller="eventsListCtrl" isOpen="false">
+    <div class="list-group-item myEventsListHeader text-center" ng-click="isOpen = !isOpen">My Events</div>
+    <div class="list-group-item eventsListItem" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'" ng-show="isOpen">
+      <span>{{event.topic}}</span>
+      <br>
+      <span>{{event.place}}</span>
+      <br>
+      <span>{{event.formatted}}</span>
+      <br>
+      <span ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span>
     </div>
-
   </div>
 
-<div class="clearfix visible-sm"></div>
+
+
 
   <!-- <div class="row-fluid"> -->
-    <div id="eventsList" class="col-md-7 col-sm-12 col-xs-12" centered>
+    <div id="eventsList" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 eventPanel">
       <div ng-controller="eventsListCtrl">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
+        <!-- Add Event Table -->
+        <div ng-controller="createEventCtrl" class="panel panel-primary createEventHeader text-center" isOpen="false">
+          <div class=" panel-heading createEventHeader" ng-click="isOpen = !isOpen">
+            + Click here to host a new event!
+          </div>
+          <div class="panel-body" ng-show="isOpen">
+            <form class="createEvent form-horizontal" ng-submit="sendEvent()">
+
+              <span class="glyphicon glyphicon-text-background"></span>
+              <input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
+              <span class="glyphicon glyphicon-map-marker"></span>
+              <input class="form-control" type="text" ng-model="event.place" placeholder="Place" required></input><br>
+              <span class="glyphicon glyphicon-calendar"></span>
+              <input class="form-control dropdown" type="date" ng-model="event.date" required min="{{currentDate | date: 'yyyy-MM-dd'}}"></input><br>
+              <span class="glyphicon glyphicon-time"></span>
+              <input class="form-control" type="time" ng-model="event.time" required><br>
+
+              <button class="btn btn-primary addRemoveButton">Add</button>
+            </form>
+          </div>
+        </div>
+
+        <ul class="list-group eventsList">
+          <li class="list-group-item eventsListItem" ng-repeat="event in data | filter: upcomingEvents | orderBy:'datetime'">
             <span class="col-sm-2 text-left pull-left"><strong>Topic:</strong></span>
             <span class="col-sm-4">{{event.topic}}</span>
             <br>
@@ -62,5 +69,35 @@
         </ul>
       </div>
     </div>
+
+    <!-- <div class="clearfix visible-sm"></div> -->
+
+
+    <!-- <div ng-controller="createEventCtrl">
+
+      <div  class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="createEvent">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Post an Event!
+          </div>
+          <div class="panel-body">
+            <form class="createEvent form-horizontal" ng-submit="sendEvent()">
+
+              <span class="glyphicon glyphicon-text-background"></span>
+              <input class="form-control" type="text" ng-model="event.topic" placeholder="Topic" required autofocus></input><br>
+              <span class="glyphicon glyphicon-map-marker"></span>
+              <input class="form-control" type="text" ng-model="event.place" placeholder="Place" required></input><br>
+              <span class="glyphicon glyphicon-calendar"></span>
+              <input class="form-control dropdown" type="date" ng-model="event.date" required min="{{currentDate | date: 'yyyy-MM-dd'}}"></input><br>
+              <span class="glyphicon glyphicon-time"></span>
+              <input class="form-control" type="time" ng-model="event.time" required><br>
+
+              <button class="btn btn-primary addRemoveButton">Add</button>
+            </form>
+          </div>
+        </div>
+      </div> -->
+
+    </div>
+
   <!-- </div> -->
-</div>
