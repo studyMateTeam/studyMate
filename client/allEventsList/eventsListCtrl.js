@@ -5,6 +5,7 @@ angular.module('studyMate')
   $scope.data = [];
   $scope.allGuestLists = {};
   $scope.booksShowing = false;
+  $scope.myEvents = [];
 
   $scope.toggleBooksShowing = function (){
     if($scope.booksShowing === true){
@@ -12,7 +13,7 @@ angular.module('studyMate')
     } else {
       $scope.booksShowing = true;
     }
-  }
+  };
 
   $scope.signout = function() {
     logFact.signout();
@@ -83,8 +84,15 @@ angular.module('studyMate')
         list.push(item.username);
       });
       $scope.allGuestLists[event.id] = list;
+      console.log('++line85 data = ', $scope.data);
+      console.log('++line 86: $scope.allGuestLists[event.id]  = ', $scope.allGuestLists[event.id]);
+      console.log('++line87: event.id = ', event.id);
     });
   };
+
+  // $scope.getMyEvents = function(event) {
+  //   var myEventList = [];
+  // };
 
   $scope.displayEvent();
 });

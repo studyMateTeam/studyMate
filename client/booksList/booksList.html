@@ -1,9 +1,18 @@
-<div ng-controller="booksListCtrl" ng-init="bookSearch()">
-  <h1>Books List</h1>
+<!-- NAV BAR -->
+<ul class="navbar" ng-controller="eventsListCtrl">
+  <li><a class="logo" id="active" href="#/eventsHome">StudyMate</a></li>
+  <li class="logout pull-right"ng-click="signout()"><a href="#/signin" >logout</a></li>
+  <li class="eventsButton pull-right" ui-sref="eventsHome">Events</li>
+</ul>
+
+
+<div class="bookList"ng-controller="booksListCtrl" ng-init="bookSearch()">
+  <h1 class="bookListTitle">Books List</h1>
 
   <!-- filter buttons -->
   <!-- <button type="button" name="paidBooks" ng-click="priceFilter = {book.accessInfo.pdf.isAvailable === "true"}">Paid</button>
   <button type="button" name="freeBooks" ng-click=priceFilter = "{book.accessInfo.pdf.isAvailable === "false"}">Free</button> -->
+
   <ul ng-repeat="book in booksList | filter: priceFilter">
 
     <!-- Book Layout in Books page -->
@@ -13,7 +22,7 @@
           <span><img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" /></span>
         </div>
         <div class="col-md-12 bookInfo">
-          <span id="bookInfoAuthor"><span class="bookInfoHeader">Title: {{ book.volumeInfo.title }}</span><br>
+          <span id="bookInfoAuthor"><span class="bookInfoHeader">{{ book.volumeInfo.title }}</span><br>
           <span id="bookInfoAuthor"><span class="bookInfoHeader">Author:</span> {{ book.volumeInfo.authors[0] }}</span><br>
           <span id="bookInfoCategory"><span class="bookInfoHeader">Category:</span> {{ book.volumeInfo.categories[0] }}</span><br>
           <span id="bookInfoDescription">
@@ -33,5 +42,4 @@
       </div>
     </div>
   </ul>
-  <button ui-sref="eventsHome" class="btn btn-default">Back to Events</button>
 </div>
