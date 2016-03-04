@@ -4,6 +4,7 @@ angular.module('studyMate')
 
 var books = [];
 
+// google books api get request
 var bookSearch = function(topic) {
   return $http({
     method: 'GET',
