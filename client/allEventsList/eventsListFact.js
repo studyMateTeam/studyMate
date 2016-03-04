@@ -47,20 +47,10 @@ angular.module('studyMate')
     });
   };
 
-  var eventJoin = function(joinData) {
-    return $http({
-      method: 'POST',
-      url: 'api/events/eventJoin',
-      data: joinData
-    }).then(function(resp) {
-      return resp.data;
-    });
-  };
-
   return {
     getEvents: getEvents,
-    eventJoin: eventJoin,
     getGuestList: getGuestList,
-    bookSearch: bookSearch
+    bookSearch: bookSearch,
+    eventToggle: eventToggle
   };
 });
