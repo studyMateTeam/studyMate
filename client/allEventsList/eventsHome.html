@@ -62,8 +62,8 @@
             <span class="col-sm-4">{{event.formatted}}</span>
             <br>
             <div ng-init="getGuestList(event)"></div>
-            <span class="col-sm-2 text-left pull-left"><strong>Attendees:</strong></span>
-            <span class="col-sm-1 guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span>
+            <span class="col-lg-2 col-md-2 col-sm-2 text-left pull-left"><strong>Attendees:</strong></span>
+            <span class="col-sm-2 guestList" ng-repeat="guest in allGuestLists[event.id]"> {{guest}} </span>
             <br>
           </li>
         </ul>
