@@ -90,9 +90,9 @@ angular.module('studyMate')
     });
   };
 
-  // $scope.getMyEvents = function(event) {
-  //   var myEventList = [];
-  // };
+  $scope.getMyEvents = function(event) {
+    var myEventList = [];
+  };
 
   $scope.displayEvent();
 });

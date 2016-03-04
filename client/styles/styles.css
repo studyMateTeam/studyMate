@@ -60,7 +60,7 @@ body {
   padding-top: 40px;
   /*padding-bottom: 40px;*/
   background-image: url('../assets/1344899.jpg');
-  background-size: stretch;
+  background-size: cover;
   top: 0;
   bottom: 0;
   left: 0;
@@ -73,14 +73,37 @@ h4 {
 }
 
 /************ myEventList ******************/
+.myEventsButton {
+  border: 1px solid white;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  margin-top: 3px;
+  margin-right: 10px;
+  font-size: 1em;
+  line-height: 10px;
+}
+.myEventsButton:hover {
+  background-color: #F7C969;
+}
 .myEventsListHeader {
-  height: 45px;
+  height: 50px;
   color: #777;
   /*font-size: 1.5em;*/
+  z-index: 1;
+  padding: 20px;
 }
+
+.myEventsListHeader:hover {
+  cursor: hand;
+  /*margin-bottom: -40px;*/
+}
+
 .myEvents {
   margin-top: 10px;
   background-color: #F7C969;
+
 }
 
 
@@ -90,6 +113,7 @@ h4 {
   padding-top: 40px;
   /*margin: 0 auto;*/
   color: white;
+  z-index: 0;
 }
 .eventsList {
   margin-top: -20px;
@@ -106,7 +130,6 @@ h4 {
   color: white;
 }
 
-
 .eventPanel {
   margin-right: 0;
   top: 0;
@@ -114,7 +137,7 @@ h4 {
   bottom: 0;
   height: 100%;
   overflow: scroll;
-  margin-top: -40px;
+  /*margin-top: -40px;*/
   /*margin-right: -15px;*/
   margin-left: 0;
 }

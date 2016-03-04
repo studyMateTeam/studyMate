@@ -48,6 +48,8 @@ module.exports = {
   getEvents: function(req, res) {
     Events.fetch()
       .then(function(collection) {
+        // var token = req.body.token;
+        // console.log('++line 52 ', token);
         collection = collection.toJSON();
         res.send(collection);
       });
