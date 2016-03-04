@@ -73,7 +73,7 @@ h4 {
 }
 
 /************ myEventList ******************/
-.myEventsButton {
+/*.myEventsButton {
   border: 1px solid white;
   border-radius: 4px;
   text-align: center;
@@ -86,32 +86,31 @@ h4 {
 }
 .myEventsButton:hover {
   background-color: #F7C969;
-}
+}*/
 .myEventsListHeader {
-  height: 50px;
-  color: #777;
+  height: 40px;
+  color: #333;
   /*font-size: 1.5em;*/
   z-index: 1;
-  padding: 20px;
+  padding: 10px;
 }
 
 .myEventsListHeader:hover {
   cursor: hand;
   /*margin-bottom: -40px;*/
 }
-
 .myEvents {
   margin-top: 10px;
   background-color: #F7C969;
-
 }
 
 
 
 #eventsList {
   padding: 0;
-  padding-top: 40px;
+  /*padding-top: 40px;*/
   /*margin: 0 auto;*/
+  /*margin-top: 0;*/
   color: white;
   z-index: 0;
 }
