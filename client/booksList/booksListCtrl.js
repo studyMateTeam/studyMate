@@ -1,6 +1,5 @@
 angular.module('studyMate')
 
-
 .controller('booksListCtrl', function($scope, $window, $state, $stateParams, booksListFact) {
   $scope.booksList = [];
   $scope.bookTopic = $stateParams.bookTopic;
