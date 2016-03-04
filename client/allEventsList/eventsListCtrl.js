@@ -65,7 +65,7 @@ angular.module('studyMate')
       event: event
     };
 
-    eventsListFact.eventJoin(eventJoinData)
+    eventsListFact.eventToggle(eventData)
     .then(function(response) {
       if (response.isValid) {
         $scope.getGuestList(event);
@@ -73,6 +73,7 @@ angular.module('studyMate')
         console.log('Event join failed');
       }
     });
+    $scope.getGuestList(event);
   };
 
   $scope.getGuestList = function(event) {
